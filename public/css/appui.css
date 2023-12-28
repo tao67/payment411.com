@@ -1,0 +1,233 @@
+.appui textarea {
+	width: 100%;
+	padding: 20px;
+	height: 300px;
+	font-family: "Fira Code", monospace;
+	font-size: 12px;
+	box-sizing: border-box;
+}
+
+.appui fieldset legend {
+	padding: 0 10px;
+	font-weight: 500;
+}
+
+.appui fieldset dl {
+	font-size: 14px;
+}
+
+.appui fieldset dl,
+.appui fieldset p,
+.appui fieldset ul {
+	margin: 0;
+}
+
+.appui dl dt {
+	float: left;
+	margin-right: 10px; 
+	padding: 5px;
+	width: 120px;
+}
+
+.appui .toolbar {
+	clear: both;
+}
+
+.appui dl dd {
+	margin: 2px 0; 
+	padding: 5px 0;
+}
+
+.appui input,
+.appui select {
+	padding: 2px 10px;
+	text-align: center;
+	line-height: 28px;
+	font-size: 12px;
+}
+
+.appui select {
+	padding: 8px 10px;
+	border: 0;
+}
+
+.appui select.small {
+	width: 80px;
+}
+
+.appui input.small {
+	width: 60px;
+}
+
+.appui input.usmall {
+	width: 28px;
+	float: right;
+}
+
+.appui input.medium {
+	width: 100px;
+}
+
+.appui input.large {
+	width: 300px;
+	text-align: left;
+}
+
+.appui .column {
+	width: 48%;
+	float: left;
+	margin-right: 10px;
+}
+
+.appui .column.left {
+	float: left;
+}
+
+.appui .column.right {
+	float: right;
+	margin-right: 0;
+}
+
+.appui .column.normal {
+	float: none;
+}
+
+.appui .colum:last-of-type {
+	margin-right: 0;
+}
+
+.dropzone,
+.appui .dropzone {
+	height: 200px;
+}
+
+.appui ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.appui ul.tabs li {
+	background: none;
+	list-style-type: none;
+	display: inline-block;
+	padding: 4px 15px;
+	cursor: pointer;
+	border-bottom: 0;
+}
+
+.appui ul.tabs li:before {
+	content: "" !important;
+	position: relative;
+}
+
+.appui .tab-content {
+	display: none;
+	padding: 15px;
+}
+
+.appui .tab-content.current {
+	display: inherit;
+}
+
+@media screen and (max-width:800px) {
+	.appui ul.tabs li {
+		display: block;
+	}
+}
+
+@media screen and (max-width:600px) {
+	.appui .column {
+		width: 100% !important;
+		float: none !important;
+		margin: 0 !important;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.dropzone,
+	.appui .dropzone {
+		border: 4px dashed #ccc;
+	}
+	.dropzone.hover,
+	.appui .dropzone.hover {
+		border: 4px dashed #f36;
+	}
+	.appui input.group:first-child {
+		border-right: 0;
+	}
+	.appui select {
+		background-color: #1C181F;
+		border: 1px solid #444;
+		color: #fff;
+	}
+	.appui input.readonly {
+		background-color: #444 !important;
+	}
+	.appui input[type="text"] {
+		border: 1px solid #444;
+		background-color: #1C181F;
+		color: #fff;
+	}
+	.appui fieldset,
+	.appui ul.tabs li,
+	.appui .tab-content {
+		border: 1px solid #444;
+	}
+	.appui ul.tabs li {
+		border-right: none !important;
+	}
+	.appui ul.tabs li:last-child {
+		border-right: 1px solid #444 !important;
+	}
+	.appui ul.tabs li {
+		border-bottom: none;
+	}
+	.appui input.readonly {
+		background-color: #1C181F;
+	}
+	.appui ul.tabs li.current {
+		background: #002040;
+		color: #eee;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	.dropzone,
+	.appui .dropzone {
+		border: 4px dashed #ccc;
+	}
+	.dropzone.hover,
+	.appui .dropzone.hover {
+		border: 4px dashed #f36;
+	}
+	.appui select {
+		background-color: #000;
+		color: #fff;
+	}
+	.appui input[type="text"] {
+	}
+	.appui fieldset,
+	.appui ul.tabs li,
+	.appui .tab-content {
+		border: 1px solid #ccc;
+	}
+	.appui ul.tabs li {
+		border-right: none !important;
+	}
+	.appui ul.tabs li:last-child {
+		border-right: 1px solid #ccc !important;
+	}
+	.appui ul.tabs li {
+		border-bottom: none;
+	}
+	.appui input.readonly {
+		border-color: #ddd;
+		background-color: #ddd;
+		color: #000;
+	}
+	.appui ul.tabs li.current {
+		background: #eee;
+		color: #222;
+	}
+}
