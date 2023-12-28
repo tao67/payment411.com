@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Tao67</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Tao67</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Dec 2023 00:16:45 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mon Premier Article</title>
+      <link>http://localhost:1313/posts/mon-premier-article/</link>
+      <pubDate>Mon, 25 Dec 2023 00:16:45 +0100</pubDate>
+      <guid>http://localhost:1313/posts/mon-premier-article/</guid>
+      <description>Features Multilingual. Dark and light mode. Clean, no external JavaScript, stylesheets or Google fonts. Supports Indieweb. Simple and minimalistic, ultra-fast. Has webmentions. Syntax highlighting. Has mobile menu support and lightbox. Usage Configure your config.toml. Feel free to copy the demo config.toml and some content from the exampleSite folder. Build your site with hugo serve and enjoy the result at http://localhost:1313.&#xA;Make sure you replace all occurrences of sizeof.cat with your website address (or http://localhost:1313/).</description>
+    </item>
+  </channel>
+</rss>
