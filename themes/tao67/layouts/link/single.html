@@ -1,0 +1,24 @@
+{{ define "content" -}}
+<article class="post link h-entry">
+	<header>
+		<h1>
+			<a target="_blank" rel="noopener noreferrer" class="p-name u-bookmark-of" href="{{ .Params.link }}">{{ .Title }}</a>
+		</h1>
+		<div class="meta">
+			<span class="dt-published" datetime="{{ .Date.Format ("02 Jan 2006 15:04 MST") }}">{{ .Params.date.Format .Site.Params.dateFormat }} &nbsp;</span>&nbsp;<span> {{ .Section | humanize }} &nbsp;</span>&nbsp;<span class="bookmark-link u-url"> {{ .Params.link }} </span>
+		</div>
+	</header>
+	<div class="content e-content">
+		<div class="summary">
+			<blockquote>
+				{{ .Content }}
+				{{- if .Params.author_url -}}
+				<strong><a target="_blank" rel="noopener noreferrer" href="{{ if .Params.author_url }}{{ .Params.author_url }}{{ end }}">{{ .Params.author }}</a></strong>
+				{{- else -}}
+				<strong>{{ .Params.author }}</strong>
+				{{- end -}}
+			</blockquote>
+		</div>
+	</div>
+</article>
+{{- end }}

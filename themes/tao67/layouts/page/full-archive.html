@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+<head>
+	<meta charset="utf-8">
+	<title>Full archive - {{ .Site.Author.name }}</title>
+	{{ partial "head.html" . }}
+</head>
+<body>
+	{{ partial "slideout.html" . }}
+	<div class="container" id="mobile-panel">
+		<header>
+			{{ partial "header.html" . }}
+		</header>
+		<main class="main">
+			<div class="wrapper">
+				<div class="content">
+					<section class="post archive">
+						<header>
+							<h1>{{ i18n "Fullarchive" }}</h1>
+						</header>
+						<div class="content">
+							<blockquote>
+								<p>Dipping into the archive is always an interesting, if sometimes unsettling, proposition. It often begins with anxiety, with the fear that the thing you want won't surface. But ultimately the process is a little like tapping into the unconscious, and can bring with it the ambivalent gratification of rediscovering forgotten selves. <strong>Moyra Davey, Long Life Cool White: Photographs and Essays</strong></p>
+							</blockquote>
+							<p>You might be looking for the <a href="{{ "/archive/" | relLangURL }}">normal archive</a>, which doesn't include <a href="/so.cl/">so.cl posts</a>.</p>
+						</div>
+						<aside class="toc toc-h">
+							<nav>
+								<ul>
+									<li>{{ i18n "Years" }}:</li>
+{{- range $index, $element := where .Site.RegularPages "Section" "in" .Site.Params.full_archive_sections -}}{{- $thisYear := $element.Date.Format "2006" }}{{- $lastElement := $index | add -1 | index (where .Site.RegularPages "Section" "in" .Site.Params.full_archive_sections) }}{{ if or (eq $index 0) ( ne ($lastElement.Date.Format "2006") $thisYear ) }}<li><a href="#{{ $thisYear }}">{{ $thisYear }}</a></li>{{- end }}{{- end }}
+								</ul>
+							</nav>
+						</aside>
+						{{- range $index, $element := where .Site.RegularPages "Section" "in" .Site.Params.full_archive_sections -}}
+						{{- $thisYear := $element.Date.Format "2006" }}
+						{{- $lastElement := $index | add -1 | index (where .Site.RegularPages "Section" "in" .Site.Params.full_archive_sections) }}
+						{{ if or (eq $index 0) ( ne ($lastElement.Date.Format "2006") $thisYear ) }}
+							<h1 class="year" id="{{ $thisYear }}">{{ $thisYear }}</h1>
+						{{- end }}
+						<div class="ap{{ if eq .Params.weight 1 }} pinned{{ end }}">
+							<span class="apm">
+								{{ $element.Date.Format "Jan 2" }}
+							</span>
+							<span title="{{ .Section | humanize }}" class="apf">
+							{{ if eq .Section "photo" }}
+								<svg viewBox="0 0 64 64" fill="currentColor"><use xlink:href="#icon-photo"></use></svg>
+							{{ else if eq .Section "link" }}
+								<svg viewBox="0 0 64 64" fill="currentColor"><use xlink:href="#icon-link"></use></svg>
+							{{ else if eq .Section "review" }}
+								<svg viewBox="0 0 64 64" fill="currentColor"><use xlink:href="#icon-review"></use></svg>
+							{{ else if eq .Section "quote" }}
+								<svg viewBox="0 0 64 64" fill="currentColor"><use xlink:href="#icon-quote"></use></svg>
+							{{ else if eq .Section "post" }}
+								<svg viewBox="0 0 50 50" fill="currentColor"><use xlink:href="#icon-post"></use></svg>
+							{{ else if eq .Section "music" }}
+								<svg viewBox="0 0 48 48" fill="currentColor"><use xlink:href="#icon-music"></use></svg>
+							{{ else if eq .Section "so.cl" }}
+								<svg viewBox="0 0 50 50" fill="currentColor"><use xlink:href="#icon-socl"></use></svg>
+							{{ else }}
+								<svg viewBox="0 0 50 50" fill="currentColor"><use xlink:href="#icon-page"></use></svg>
+							{{ end }}
+							</span>
+							{{ if .Params.encrypted }}
+							<span title="Locked" class="apf ap-locked"><svg viewBox="0 0 64 64" fill="currentColor"><use xlink:href="#icon-locked"></use></svg></span>
+							{{ end }}
+							{{ if eq .Params.weight 1 }}
+							<span title="Pinned" class="apf ap-pin"><svg viewBox="0 0 64 64" fill="currentColor"><use xlink:href="#icon-pinned"></use></svg></span>
+							{{ end }}
+							{{ if .Params.outdated }}
+							<span title="Old, might be outdated" class="apf ap-outdated"><svg viewBox="0 0 64 64" fill="currentColor"><use xlink:href="#icon-outdated"></use></svg></span>
+							{{ end }}
+							<a href="{{ .Permalink | safeURL  }}">
+								{{ .Title }}
+							</a>
+						</div>
+					{{- end -}}
+					<br />
+					<aside class="toc toc-h">
+						<nav>
+							<ul>
+									<li>{{ i18n "Years" }}:</li>
+										{{- range $index, $element := where .Site.RegularPages "Section" "in" .Site.Params.full_archive_sections -}}
+										{{- $thisYear := $element.Date.Format "2006" }}
+										{{- $lastElement := $index | add -1 | index (where .Site.RegularPages "Section" "in" .Site.Params.full_archive_sections) }}
+											{{ if or (eq $index 0) ( ne ($lastElement.Date.Format "2006") $thisYear ) }}
+												<li><a href="#{{ $thisYear }}">{{ $thisYear }}</a></li>
+											{{- end }}
+										{{- end }}
+								</ul>
+							</nav>
+						</aside>
+					</section>
+				</div>
+			</div>
+		</main>
+		{{ partial "footer.html" . }}
+	</div>
+	{{ partial "scripts.html" . }}
+	<div class="hidden" style="display:none">
+		<svg id="icon-photo" viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(278, 232)"><path d="M-226.2-181.6h-39.5c-2.3,0-4.2-1.9-4.2-4.2v-28.2c0-2.3,1.9-4.2,4.2-4.2h39.5 c2.3,0,4.2,1.9,4.2,4.2v28.2C-222-183.5-223.9-181.6-226.2-181.6L-226.2-181.6z M-265.8-215.5c-0.8,0-1.4,0.6-1.4,1.4v28.2 c0,0.8,0.6,1.4,1.4,1.4h39.5c0.8,0,1.4-0.6,1.4-1.4v-28.2c0-0.8-0.6-1.4-1.4-1.4H-265.8L-265.8-215.5z" /><path d="M-238.9-201.5c-3.1,0-5.5-2.5-5.5-5.5s2.5-5.5,5.5-5.5s5.5,2.5,5.5,5.5 S-235.9-201.5-238.9-201.5L-238.9-201.5z M-238.9-210c-1.6,0-2.9,1.3-2.9,2.9c0,1.6,1.3,2.9,2.9,2.9c1.6,0,2.9-1.3,2.9-2.9 C-236-208.7-237.3-210-238.9-210L-238.9-210z" /><polyline points="-231.4,-182.1 -254.5,-203.8 -267.7,-191.6 -269.5,-193.5 -254.5,-207.4 -229.6,-184 -231.4,-182.1"/><polyline points="-224.2,-189.3 -231.9,-195.5 -238.3,-190.2 -240,-192.3 -231.9,-198.9 -222.6,-191.3 -224.2,-189.3"/></g></g></svg>
+		<svg id="icon-link" viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(30, 380)"><path d="M0.5-339.7c0.1,0.4,0.1,0.8,0.1,1.2c0,2.2-0.8,4.2-2.4,5.7l-3.2,3.2c-1.5,1.5-3.6,2.4-5.7,2.4 c-4.5,0-8.1-3.6-8.1-8.1c0-2.2,0.8-4.2,2.4-5.7l3.2-3.2c1.5-1.5,3.6-2.4,5.8-2.4c0.4,0,0.8,0.1,1.2,0.1l2.5-2.5 c-1.2-0.4-2.4-0.6-3.7-0.6c-3,0-5.8,1.2-7.9,3.3l-3.2,3.2c-2.1,2.1-3.3,4.9-3.3,7.9c0,6.1,5,11.1,11.1,11.1c3,0,5.8-1.2,7.9-3.3 l3.2-3.2c2.1-2.1,3.3-4.9,3.3-7.9c0-1.3-0.2-2.5-0.6-3.7L0.5-339.7" /><path d="M14.9-372c-3,0-5.8,1.2-7.9,3.3l-3.2,3.2c-2.1,2.1-3.3,4.9-3.3,7.9c0,1.3,0.2,2.5,0.6,3.7 l2.5-2.5c-0.1-0.4-0.1-0.8-0.1-1.2c0-2.2,0.8-4.2,2.4-5.7l3.2-3.2c1.5-1.5,3.6-2.4,5.8-2.4c4.5,0,8.1,3.6,8.1,8.1 c0,2.2-0.8,4.2-2.4,5.7l-3.2,3.2c-1.5,1.5-3.6,2.4-5.7,2.4c-0.4,0-0.8-0.1-1.2-0.1L8-347.2c1.2,0.4,2.4,0.6,3.7,0.6 c3,0,5.8-1.2,7.9-3.3l3.2-3.2c2.1-2.1,3.3-4.9,3.3-7.9C26-367,21-372,14.9-372" /><path d="M-5.9-338.5c-0.4,0-0.8-0.2-1.1-0.5c-0.6-0.6-0.6-1.6,0-2.3l16-16c0.6-0.6,1.6-0.6,2.3,0 c0.6,0.6,0.6,1.6,0,2.3l-16,16C-5.1-338.6-5.5-338.5-5.9-338.5" /></g></g></svg>
+		<svg id="icon-review" viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(28, 530)"><path d="M9-491.8c4.2-3.2,10.5-8.1,10.5-25.9v-1.4h-31.1v1.4c0,17.9,6.3,22.7,10.5,25.9 c2.4,1.9,3.6,2.9,3.6,5.1v4.3c-2.3,0.2-4.5,1.1-5.3,2.8h-3.2c-1.6,0-2.8,1.3-2.8,2.8h25.4c0-1.6-1.3-2.8-2.8-2.8h-3.2 c-0.8-1.7-3-2.5-5.3-2.8v-4.3C5.4-489,6.6-490,9-491.8L9-491.8z M4-491c-0.9-1.2-2.1-2.1-3.3-3c-3.8-3-9.1-7-9.4-22.3h25.4 c-0.3,15.3-5.5,19.3-9.4,22.3C6.1-493.1,4.9-492.2,4-491L4-491z" /><path d="M-4.7-495.2c-0.2,0-15.3-3.2-15.3-19.7v-1.4h9.9v2.8h-7c0.8,13,12.8,15.5,12.9,15.6 L-4.7-495.2" /><path d="M12.7-495.2l-0.6-2.8c0.5-0.1,12.1-2.6,12.9-15.6h-7v-2.8H28v1.4 C28-498.4,12.9-495.2,12.7-495.2" /></g></g></svg>
+		<svg id="icon-post" viewBox="0 0 50 50" fill="currentColor"><g><path d="M42.343,1c-1.778,0-3.45,0.692-4.707,1.95L4.293,36.293L4.105,36.48l-3.53,12.945l12.945-3.53L47.05,12.364 C48.308,11.106,49,9.435,49,7.657C49,3.986,46.014,1,42.343,1z M6.414,37L31,12.414L37.586,19L13,43.586L6.414,37z M32.414,11 L35,8.414L41.586,15L39,17.586L32.414,11z M5.512,38.926l5.563,5.563l-7.649,2.086L5.512,38.926z M45.636,10.95L43,13.586L36.414,7 l2.636-2.636C39.93,3.484,41.099,3,42.343,3C44.911,3,47,5.089,47,7.657C47,8.901,46.516,10.07,45.636,10.95z"/></g></svg>
+		<svg id="icon-socl" viewBox="0 0 50 50" fill="currentColor"><g transform="matrix(0.166667,0,0,0.166667,0,-476.181)"><path d="M39,2893.09C27.47,2893.09 18,2902.56 18,2914.09L18,2998.1C18,3009.63 27.47,3019.11 39,3019.11L47.813,3019.11L48,3055.11C48.017,3058.39 50.721,3061.08 54.001,3061.08C55.932,3061.08 57.749,3060.14 58.875,3058.58L87,3019.11L108,3019.11L108,3058.11C108,3069.64 117.47,3079.11 129,3079.11L213,3079.11L241.125,3118.59C242.251,3120.15 244.068,3121.09 245.999,3121.09C249.279,3121.09 251.983,3118.4 252,3115.12L252.188,3079.11L261,3079.11C272.53,3079.11 282,3069.64 282,3058.11L282,2974.1C282,2962.57 272.53,2953.1 261,2953.1L192,2953.1L192,2914.09C192,2902.56 182.53,2893.09 171,2893.09L39,2893.09ZM39,2905.09L171,2905.09C176.09,2905.09 180,2909 180,2914.09L180,2953.1L129,2953.1C117.47,2953.1 108,2962.57 108,2974.1L108,3007.1L83.906,3007.1C81.987,3007.09 80.172,3007.99 79.031,3009.54L59.906,3036.36L59.813,3013.01C59.761,3009.75 57.069,3007.1 53.813,3007.1L39,3007.1C33.91,3007.1 30,3003.19 30,2998.1L30,2914.09C30,2909 33.91,2905.09 39,2905.09L39,2905.09ZM129,2965.1L261,2965.1C266.09,2965.1 270,2969.01 270,2974.1L270,3058.11C270,3063.2 266.09,3067.11 261,3067.11L246.188,3067.11C242.931,3067.11 240.239,3069.76 240.188,3073.02L240.094,3096.36L220.969,3069.55C219.828,3068 218.014,3067.1 216.094,3067.11L129,3067.11C123.91,3067.11 120,3063.2 120,3058.11L120,2974.1C120,2969.01 123.91,2965.1 129,2965.1L129,2965.1Z"/></g></svg>
+		<svg id="icon-quote" viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(328, 480)"><path d="M-310-425.6h-2.5l1.5-2.1c1.1-1.6,1.9-3.5,2.3-6c-7.1-3.2-10.9-9.2-10.9-17.1 c0-12.1,9.1-19.6,23.8-19.6c14.7,0,23.8,7.5,23.8,19.6c0,12.2-8.9,19.6-23.8,19.6c-0.3,0-0.7,0-1,0 C-299.2-428.6-303.2-425.6-310-425.6L-310-425.6z M-296-467.8c-13.3,0-21.2,6.3-21.2,17c0,9.1,5.6,13.2,10.2,15.1l0.9,0.4l-0.1,1 c-0.3,2.3-0.8,4.3-1.6,6c4.8-0.6,7.6-3,9.1-5l0.4-0.5l0.9,0c0.4,0,0.9,0,1.3,0c19.1,0,21.2-11.9,21.2-17     C-274.8-461.4-282.7-467.8-296-467.8L-296-467.8z" /></g></g></svg>
+		<svg id="icon-page" viewBox="0 0 100 100" fill="currentColor"><g id="Document"><rect height="2.178" width="37.764" x="31.436" y="25.673"/><rect height="2.179" width="37.764" x="31.436" y="33.661"/><rect height="2.179" width="37.764" x="31.436" y="42.375"/><rect height="2.179" width="37.764" x="31.436" y="50.363"/><rect height="2.179" width="37.764" x="31.436" y="59.077"/><path d="M76.823,8.79H24.538c-3.604,0-6.536,2.932-6.536,6.536v69.349c0,3.604,2.932,6.536,6.536,6.536h42.119 c9.21,0,16.702-7.492,16.702-16.702V15.326C83.359,11.721,80.427,8.79,76.823,8.79z M22.358,84.675V15.326 c0-1.202,0.979-2.179,2.18-2.179h52.285c1.2,0,2.178,0.977,2.178,2.179v56.096H62.663v15.432H24.538 C23.337,86.854,22.358,85.876,22.358,84.675z M67.02,86.835V75.779h11.916C78.311,81.873,73.23,86.652,67.02,86.835z"/></g></svg>
+		<svg id="icon-music" viewBox="0 0 48 48" fill="currentColor"><g><g><g><path d="M14,46c-3.309,0-6-2.691-6-6s2.691-6,6-6h6v6C20,43.196,17.196,46,14,46z M14,36c-2.206,0-4,1.794-4,4s1.794,4,4,4 c2.289,0,4-2.112,4-4v-4H14z"/></g><g><path d="M34,40c-3.309,0-6-2.691-6-6s2.691-6,6-6h6v6C40,37.196,37.196,40,34,40z M34,30c-2.206,0-4,1.794-4,4s1.794,4,4,4 c2.289,0,4-2.112,4-4v-4H34z"/></g><g><polygon points="20,35 18,35 18,10.323 40,1.523 40,29 38,29 38,4.477 20,11.677"/></g><g><rect height="21.541" transform="matrix(0.3711 0.9286 -0.9286 0.3711 31.24 -18.1245)" width="2" x="28" y="3.23"/></g></g></g></svg>
+		<svg id="icon-locked" viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(284, 430)"><path d="M-237.7-401.3h-3v-6.4c0-6.2-5.1-11.3-11.3-11.3c-6.2,0-11.3,5.1-11.3,11.3v6.4h-3v-6.4 c0-7.9,6.4-14.3,14.3-14.3s14.3,6.4,14.3,14.3V-401.3" /><path d="M-239.2-374.1h-25.6c-2.6,0-4.8-2.2-4.8-4.8v-19.2c0-2.6,2.2-4.8,4.8-4.8h25.6     c2.6,0,4.8,2.2,4.8,4.8v19.2C-234.4-376.2-236.6-374.1-239.2-374.1L-239.2-374.1z M-264.8-399.7c-0.9,0-1.6,0.7-1.6,1.6v19.2 c0,0.9,0.7,1.6,1.6,1.6h25.6c0.9,0,1.6-0.7,1.6-1.6v-19.2c0-0.9-0.7-1.6-1.6-1.6H-264.8L-264.8-399.7z" /><path d="M-248.8-393.3c0,1.8-1.4,3.2-3.2,3.2s-3.2-1.4-3.2-3.2s1.4-3.2,3.2-3.2S-248.8-395-248.8-393.3" /><polyline points="-251.2,-393.3 -252.8,-393.3 -254.4,-383.7 -249.6,-383.7 -251.2,-393.3"/></g></g></svg>
+		<svg id="icon-outdated" viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(228, 278)"><path d="M-196-222.1c-13.2,0-23.9-10.7-23.9-23.9c0-13.2,10.7-23.9,23.9-23.9s23.9,10.7,23.9,23.9 C-172.1-232.8-182.8-222.1-196-222.1L-196-222.1z M-196-267.3c-11.7,0-21.3,9.6-21.3,21.3s9.6,21.3,21.3,21.3s21.3-9.6,21.3-21.3 S-184.3-267.3-196-267.3L-196-267.3z" /><polygon points="-197.4,-236.1 -194.6,-236.1 -194.6,-233.3 -197.4,-233.3"/><polyline points="-195.2,-238.9 -196.8,-238.9 -197.4,-250.2 -197.4,-258.7 -194.6,-258.7 -194.6,-250.2 -195.2,-238.9"/></g></g></svg>
+		<svg id="icon-pinned" viewBox="0 0 22 22" fill="currentColor"><g><g transform="translate(2, 2)"><path d="M14,5.707L14.707,5L14.03,4.323l-3.646-3.646L9.707,0L9,0.707L9.613,1.32L4.384,5.677L3.707,5L3,5.707L3.613,6.32  l2.034,2.034L0,14l0.707,0.707l5.646-5.646l2.034,2.034L9,11.707L9.707,11L9.03,10.323l4.357-5.229L14,5.707z M8.32,9.613  L5.094,6.387l5.229-4.357l2.354,2.354L8.32,9.613z"/></g></g></svg>
+	</div>
+</body>
+</html>

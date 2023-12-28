@@ -1,0 +1,13 @@
+<footer>
+	For a bird born in captivity, flight is a mental illness.
+</footer>
+{{- if or ( eq .RelPermalink "/" ) ( eq .RelPermalink "/ca/" ) ( eq .Section "so.cl" ) }}
+<div class="h-card vcard" style="display:none">
+	<img class="u-photo" alt="{{ .Site.Author.name }} avatar image" src="/img/avatar.jpg" />
+	{{ i18n "nickname" }}: <a class="u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Author.name }}</a><br />
+	{{ i18n "job" }}: <span class="p-job-title">{{ i18n "job1" }}</span><br />
+	{{ i18n "pgpKey" }}: <a rel="pgpkey authn" href="/sizeofcat.asc" class="u-key">{{ .Site.Author.gpg_short_key }}</a>
+	<pre class="clear p-note">{{ .Site.Author.motto }}</pre>
+</div>
+{{ end }}
+</footer>

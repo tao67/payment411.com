@@ -1,0 +1,1 @@
+<span style="{{- if .Get "color" -}}color:{{ .Get "color" }};{{- else -}}color:#000;{{- end -}}{{- if .Get "bgcolor" -}}background-color:{{ .Get "bgcolor" }};{{- else -}}background-color:transparent{{- end -}}">{{ .Inner }}</span>

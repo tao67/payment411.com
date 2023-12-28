@@ -1,0 +1,229 @@
+Archive:
+  other: "Arxiu"
+
+tags:
+  other: "etiquetes"
+
+created:
+  other: "creat"
+
+categories:
+  other: "categories"
+
+powered:
+  other: "Impulsat per %s"
+
+theme:
+  other: "Tema"
+
+siteUV:
+  other: "site uv: %s"
+
+sitePV:
+  other: "site pv: %s"
+
+pagePV:
+  other: "%s times read"
+
+prevPage:
+  other: "anterior"
+
+nextPage:
+  other: "següent"
+
+prevPost:
+  other: "anterior"
+  
+nextPost:
+  other: "següent"
+
+readMore:
+  other: "Llegeix més ..."
+
+wordCount:
+  one: "{{ .Count }} paraula"
+  other: "{{ .Count }} paraules"
+
+readingTime:
+  one: "{{ .Count }} minut de lectura"
+  other: "{{ .Count }} minuts de lectura"
+
+author:
+  other: "autor"
+
+lastMod:
+  other: "modificat"
+
+markdown:
+  other: "Markdown"
+
+seeMarkDown:
+  other: "The Markdown version »"
+
+license:
+  other: "llicència"
+
+archiveCounter:
+  one: "{{ .Count }} Publicació en Total"
+  other: "{{ .Count }} Publicacions en Total"
+
+tagCounter:
+  one: "{{ .Count }} Etiqueta en Total"
+  other: "{{ .Count }} Etiquetes en Total"
+
+zeroTagCounter:
+  other: "Sense etiquetes"
+
+categoryCounter:
+  one: "{{ .Count }} Categoria en Total"
+  other: "{{ .Count }} Categories en Total"
+
+zeroCategoryCounter:
+  other: "Sense categories"
+
+Share:
+  other: "Compartir"
+
+url:
+  other: "url"
+  
+toc:
+  other: "Taula de continguts"
+
+BackHome:
+  other: "Tornar a casa"
+
+outdated:
+  other: "Consulta la data d'aquest nadó!!"
+
+outdated2:
+  other: "Aquest contingut es va publicar originalment fa un temps i ara podria estar força desfasat."
+
+inprogress:
+  other: "Under construction"
+
+inprogress2:
+  other: "Hold your horses, this page is work in progress."
+
+footer1:
+  other: "Sense JavaScript extern, sense analítiques,"
+
+footer2:
+  other: "no hi ha scripts de seguiment social"
+
+footer3:
+  other: "Només el que importa:"
+
+footer4:
+  other: "el contingut"
+
+footeryear:
+  other: "des del 2015"
+
+nickname:
+  other: "Sobrenom"
+
+job:
+  other: "Treball"
+
+pgpKey:
+  other: "clau PGP"
+
+job1:
+  other: "Consultor, Hacker"
+
+source:
+  other: "font"
+
+version:
+  other: "versió"
+
+Meta:
+  other: "Meta"
+
+updated:
+  other: "actualitzat"
+
+image:
+  other: "imatge"
+
+mood:
+  other: "estat d'ànim"
+
+Links:
+  other: "Links"
+
+RelatedPosts:
+  other: "Articles relacionats"
+
+RelatedPosts2:
+  other: "Consulteu algunes publicacions relacionades"
+
+Syndication:
+  other: "Sindicació"
+
+Syndication2:
+  other: "Aquesta publicació es distribuirà a aquests llocs"
+
+Webmentions:
+  other: "Mencions web"
+
+Webmentions1:
+  other: "Has escrit a"
+
+Webmentions2:
+  other: "resposta"
+
+Webmentions3:
+  other: "a aquesta publicació? Feu-me saber l'URL"
+
+Webmentions4:
+  other: "A continuació podeu trobar les interaccions que ha tingut aquesta pàgina utilitzant"
+
+photography:
+  other: "fotografia"
+
+music:
+  other: "música"
+
+bookmarks:
+  other: "marcadors"
+
+years:
+  other: "anys"
+
+Years:
+  other: "Anys"
+
+Fullarchive:
+  other: "Arxiu complet"
+
+reviews:
+  other: "comentaris"
+
+Translations:
+  other: "Translations"
+
+Translations2:
+  other: "Aquesta pàgina també està traduïda als idiomes següents"
+  
+metadata:
+  other: "Aquesta és la metadada de la pàgina:"
+
+Page:
+  other: "Pàgina"
+
+firstpage:
+  other: "Primera"
+
+lastpage:
+  other: "Última"
+
+nextpage:
+  other: "Següent"
+
+prevpage:
+  other: "Anterior"
+
+words:
+  other: "paraules"

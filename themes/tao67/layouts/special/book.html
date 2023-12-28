@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+<head>
+	<meta charset="utf-8">
+	<title>
+		{{- block "title" . -}}
+			{{ if .IsPage }}{{ .Title }} - {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
+		{{- end -}}
+	</title>
+	{{ partial "head.html" . }}
+</head>
+<body>
+	{{ partial "slideout.html" . }}
+	<div class="container" id="mobile-panel">
+		<header>
+			{{ partial "header.html" . }}
+		</header>
+		<main class="main">
+			<div class="wrapper">
+				<div class="content">
+					<article class="h-entry post">
+						<header class="header">
+							<h1 class="p-name">{{ .Title }}</h1>
+						</header>
+						<div class="p-content content">
+							<blockquote>
+								<p>Once there were brook trout in the streams in the mountains. You could see them standing in the amber current where the white edges of their fins wimpled softly in the flow. They smelled of moss in your hand. Polished and muscular and torsional. On their backs were vermiculate patterns that were maps of the world in its becoming. Maps and mazes. Of a thing which could not be put back. Not be made right again. In the deep glens where they lived all things were older than man and they hummed of mystery. <strong>Cormac McCarthy, The Road</strong></p>
+							</blockquote>
+{{ $news := where .Site.Pages "Section" "so.cl" }}
+{{ $taggedContent := .Site.Taxonomies.tags.ideas.Pages }}
+{{ $pages := intersect $news $taggedContent}}
+{{ range $pages }}
+	{{ .Render "onecontent" }}
+{{ end }}
+						</div>
+					</article>
+				</div>
+			</div>
+		</main>
+		{{ partial "footer.html" . }}
+	</div>
+	{{ partial "scripts.html" . }}
+</body>
+</html>

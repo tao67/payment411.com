@@ -1,0 +1,36 @@
+{{ define "content" }}
+{{ if .Site.Params.rip }}
+<div class="notify rip">
+	<div class="contents">{{ .Site.Params.rip | safeHTML }}</div>
+</div>
+{{ end }}
+{{ if .Site.Params.announce }}
+<div class="notify normal" style="margin-top:20px;margin-bottom:10px">
+	<div class="section-icon left"><i fill="currentColor" style="display: inline-block;"><svg fill="none" style="display: inline-block; vertical-align: middle;" height="32" width="32" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg></i></div>
+	<div class="contents">{{ .Site.Params.announce | safeHTML }}</div>
+</div>
+{{ end }}
+{{ if .Site.Params.banner }}
+<a title="{{ .Site.Params.banner_alt }}" rel="noopener noreferrer" href="{{ .Site.Params.banner_link }}"><img src="{{ .Site.Params.banner }}" alt="{{ .Site.Params.banner_alt }}" /></a><br /><br />
+{{ end }}
+<section class="posts">
+	{{- $paginator := .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.home_sections) }}
+	{{ range $paginator.Pages }}
+		{{ .Render "summary" }}
+	{{ end }}
+</section>
+<nav class="pagination">
+	{{ with $paginator.Prev }}
+		<a class="prev" href="{{ .URL }}">
+			<i class="glyph left"><svg viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(237, 335)"><polyline points="-199.1,-289 -212.9,-302.7 -199.1,-316.4 -197.1,-314.4 -208.9,-302.7 -197.1,-291 -199.1,-289"/></g></g></svg></i>
+			<span class="prev-text">{{ i18n "prevPage" }}</span>
+		</a>
+	{{- end }}
+	{{ with $paginator.Next }}
+		<a class="next" href="{{ .URL }}">
+			<span class="next-text">{{ i18n "nextPage" }}</span>
+			<i class="glyph right"><svg viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(237, 335)"><polyline points="-210.9,-289 -212.9,-291 -201.1,-302.7 -212.9,-314.4 -210.9,-316.4 -197.1,-302.7 -210.9,-289"/></g></g></svg></i>
+		</a>
+	{{- end }}
+</nav>
+{{ end }}

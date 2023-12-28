@@ -1,0 +1,30 @@
+<article class="post">
+	<header>
+		<h1>
+			<a href="{{ .Permalink | safeURL }}">{{ .Title }}</a>
+		</h1>
+		<div class="meta">
+			<span> {{ .Params.date.Format .Site.Params.dateFormat }} &nbsp;</span>&nbsp;<span>{{ .Section | humanize }} &nbsp;</span>
+			{{ if .Site.Params.enable_meta_boxes -}}
+			<span> {{ i18n "wordCount" .WordCount }} </span>&nbsp;<span>{{ i18n "readingTime" .ReadingTime }}</span>
+			{{- end }}
+		</div>
+	</header>
+	<div class="content">
+		{{ if .Params.image -}}
+		<div class="cover">
+			{{- if .Params.bigImage -}}
+			<a href="{{ .Params.bigImage }}">
+				<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+			</a>
+			{{- else -}}
+				<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+			{{- end -}}
+		</div>
+		{{- end }}
+		<div class="summary">
+			{{ .Summary }}
+		</div>
+		<a href="{{ .Permalink | safeURL }}">{{ i18n "readMore" }}</a>
+	</div>
+</article>

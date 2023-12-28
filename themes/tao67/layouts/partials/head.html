@@ -1,0 +1,65 @@
+{{ $description := .Site.Params.Description }}
+{{- if ne .RelPermalink "/" }}
+	{{ $description = .Description | plainify }}
+{{- end }}
+{{ $image := .Site.Params.Image }}
+{{ if .Params.Image }}
+	{{ $image = .Params.Image }}
+{{ end }}
+{{ $imageUrl := delimit (slice .Site.BaseURL $image) "" }}
+	<meta name="renderer" content="webkit" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
+	<meta name="author" content="{{ if .Params.author }}{{ .Params.author | safeHTML }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}" />
+	<meta name="referrer" content="never" />
+	<meta name="referrer" content="no-referrer" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png" />
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+	<link rel="manifest" href="/manifest.json" />
+	<meta name="msapplication-TileColor" content="#ffffff" />
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+	<meta name="theme-color" content="#5550ed" media="(prefers-color-scheme: light)" />
+	<meta name="theme-color" content="#5550ed" media="(prefers-color-scheme: dark)" />
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4965ea" />
+	<meta name="apple-mobile-web-app-title" content="{{ .Site.Author.name }}" />
+	<meta name="application-name" content="{{ .Site.Author.name }}">
+	<meta name="description" content="{{ $description }}" />
+{{- if .Params.Tags }}
+	<meta name="keywords" content="{{ delimit .Params.Tags ", " }}">
+{{- end }}
+	<meta property="og:title" content="{{ .Title }}" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:description" content="{{ $description }}" />
+	<meta property="og:url" content="{{ .Permalink | safeURL }}" />
+	<meta property="og:site_name" content="{{ .Site.Title }}" />
+	<meta property="og:image" content="{{ $imageUrl }}" />
+{{- if ne .RelPermalink "/" }}
+	<meta property="og:type" content="article" />
+{{ else }}
+	<meta property="og:type" content="website">
+{{- end }}
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="sizeof.cat">
+	<meta property="twitter:url" content="{{ .Permalink | safeURL }}">
+	<meta name="twitter:title" content="{{ .Title }}">
+	<meta name="twitter:description" content="{{ $description }}">
+	<meta name="twitter:image" content="{{ $imageUrl }}">
+{{ if eq .Site.Params.enable_webmentions true }}
+	<link rel="webmention" href="https://webmention.io/{{ .Site.Params.webmention_domain }}/webmention" />
+	<link rel="pingback" href="https://webmention.io/{{ .Site.Params.webmention_domain }}/xmlrpc" />
+	<link rel="authorization_endpoint" href="{{ .Site.Params.auth_endpoint }}" />
+	<link rel="token_endpoint" href="{{ .Site.Params.token_endpoint }}" />
+{{ end }}
+	<link rel="alternate" href="/index.xml" type="application/rss+xml" title="{{ .Site.Title }}" />
+	<link rel="alternate" href="/feed.json" type="application/json" title="{{ .Site.Title }}" />
+	<link rel="alternate" href="/atom.xml" type="application/atom+xml" title="{{ .Site.Title }}" />
+	<link rel="stylesheet" href="/css/app.css" />
+{{ range .Params.customcss }}
+	<link rel="stylesheet" href="{{ . }}" />
+{{ end }}
+{{ range .Params.customjsheader }}
+	<script src="{{ . }}"></script>
+{{ end }}

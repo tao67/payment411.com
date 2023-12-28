@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+<head>
+	<meta charset="utf-8">
+	<title>
+		{{- block "title" . -}}
+			{{ if .IsPage }}{{ .Title }} - {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
+		{{- end -}}
+	</title>
+	<meta name="renderer" content="webkit" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="author" content="{{ if .Params.author }}{{ .Params.author | safeHTML }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}" />
+{{- if .Description -}}
+	<meta name="description" content="{{ .Description | safeHTML }}" />
+{{ else if .IsPage }}
+	<meta name="description" content="{{ .Summary | plainify }}" />
+{{ else if .Site.Author.motto }}
+	<meta name="description" content="{{ .Site.Params.description | safeHTML }}" />
+{{- end -}}
+{{- if .Keywords -}}
+	{{ $length := len .Keywords | add -1 -}}
+	<meta name="keywords" content="{{ range $index, $element := .Keywords }}{{ $element | safeHTML }}{{if ne $index $length }}, {{ end }}{{ end }}" />
+{{ else if .Site.Params.keywords }}
+	{{ $length := len .Site.Params.keywords | add -1 -}}
+	<meta name="keywords" content="{{ range $index, $element := .Site.Params.keywords }}{{ $element | safeHTML }}{{if ne $index $length }}, {{ end }}{{ end }}" />
+{{- end }}
+	<link href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+{{ range .Params.customjsheader }}<script src="{{ . }}"></script>{{ end }}
+{{ range .Params.customcss }}<link rel="stylesheet" href="{{ . }}" />{{ end }}
+</head>
+<body>
+	{{ .Content }}
+	{{ range .Params.customjsfooter }}
+		<script src="{{ . }}"></script>
+	{{ end }}
+</body>
+</html>

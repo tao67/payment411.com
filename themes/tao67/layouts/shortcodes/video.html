@@ -1,0 +1,6 @@
+<video controls preload="none"{{- if .Get "poster" -}} poster="{{ .Get "poster" }}"{{- end -}}>
+	<source src="https://invidious.snopyta.org/latest_version?id={{- .Get "id" }}&amp;itag=22" type="video/mp4; codecs=&quot;avc1.64001F, mp4a.40.2&quot;" label="hd720" selected="true">
+	<source src="https://invidious.snopyta.org/latest_version?id={{- .Get "id" }}&amp;itag=22&amp;local=true" type="video/mp4; codecs=&quot;avc1.64001F, mp4a.40.2&quot;" hidequalityoption="true">
+	<source src="https://invidious.snopyta.org/latest_version?id={{- .Get "id" }}&amp;itag=18" type="video/mp4; codecs=&quot;avc1.42001E, mp4a.40.2&quot;" label="medium" selected="false">
+	<source src="https://invidious.snopyta.org/latest_version?id={{- .Get "id" }}&amp;itag=18&amp;local=true" type="video/mp4; codecs=&quot;avc1.42001E, mp4a.40.2&quot;" hidequalityoption="true">
+</video>

@@ -1,0 +1,17 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
+{{ printf "<?xml-stylesheet type=\"text/xsl\" href=\"/opml.xsl\"?>" | safeHTML }}
+<opml version="2.0">
+	<head>
+		<title>{{ .Site.Title }}</title>{{ if not .Date.IsZero }}
+		<dateCreated>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</dateCreated>{{ end }}{{ with .Site.Author.name }}
+		<ownerName>{{.}}</ownerName>{{end}}{{ with .Site.Author.email }}
+		<ownerEmail>{{.}}</ownerEmail>{{end}}
+	</head>
+	<body>
+		<outline text="{{ .Site.Title }} feeds" title="My feeds">
+			<outline title="RSS 2.0 feed" text="RSS 2.0 feed" htmlUrl="{{ .Site.BaseURL }}" type="rss" xmlUrl="{{ .Site.BaseURL }}index.xml" />
+			<outline title="ATOM feed" text="Atom feed" htmlUrl="{{ .Site.BaseURL }}" type="atom" xmlUrl="{{ .Site.BaseURL }}atom.xml" />
+			<outline title="JSON feed" text="Json feed" htmlUrl="{{ .Site.BaseURL }}" type="atom" xmlUrl="{{ .Site.BaseURL }}feed.json" />
+		</outline>
+	</body>
+</opml>

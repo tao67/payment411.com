@@ -1,0 +1,237 @@
+baseURL = "https://sizeof.cat/"
+languageCode = "en"
+defaultContentLanguage = "en"
+title = "sizeof(cat)"
+enableRobotsTXT = true
+enableEmoji = false
+theme = "sizeofcat"
+paginate = 7
+copyright = ""
+pygmentsCodeFences = true
+canonifyURLs = false
+disableHugoGeneratorInject = true
+
+[languages]
+	[languages.en]
+	title = "sizeof(cat)"
+	languageName = "English"
+	weight = 1
+	contentDir = "content/en"
+	[languages.en.menu]
+		[[languages.en.menu.main]]
+			name = "about"
+			weight = 10
+			identifier = "about"
+			url = "/about/"
+		[[languages.en.menu.main]]
+			name = "projects"
+			weight = 20
+			identifier = "projects"
+			url = "/projects/"
+		[[languages.en.menu.main]]
+			name = "archive"
+			weight = 30
+			identifier = "archive"
+			url = "/archive/"
+		[[languages.en.menu.main]]
+			name = "links"
+			weight = 40
+			identifier = "links"
+			url = "/links/"
+		[[languages.en.menu.main]]
+			name = "sitemap"
+			weight = 50
+			identifier = "sitemap"
+			url = "/sitemap/"
+		[[languages.en.menu.main]]
+			name = "so.cl"
+			weight = 60
+			identifier = "socl"
+			url = "/so.cl/"
+		[[languages.en.menu.main]]
+			name = "search"
+			weight = 70
+			identifier = "search"
+			url = "/search/"
+	[languages.ca]
+	title = "sizeof(cat)"
+	languageName = "Català"
+	weight = 2
+	contentDir = "content/ca"
+	[languages.ca.outputs]
+	home = ["html"]
+	[languages.ca.menu]
+		[[languages.ca.menu.main]]
+			name = "sobre mi"
+			weight = 10
+			identifier = "sobre-mi"
+			url = "/ca/sobre-mi/"
+		[[languages.ca.menu.main]]
+			name = "arxiu"
+			weight = 20
+			identifier = "arxiu"
+			url = "/ca/arxiu/"
+		[[languages.ca.menu.main]]
+			name = "projectes"
+			weight = 30
+			identifier = "projectes"
+			url = "/ca/projectes/"
+		[[languages.ca.menu.main]]
+			name = "mapa"
+			weight = 40
+			identifier = "mapa"
+			url = "/ca/mapa/"
+		[[languages.ca.menu.main]]
+			name = "links"
+			weight = 50
+			identifier = "links"
+			url = "/links/"
+		[[languages.ca.menu.main]]
+			name = "so.cl"
+			weight = 60
+			identifier = "socl"
+			url = "/so.cl/"
+		[[languages.ca.menu.main]]
+			name = "cerca"
+			weight = 70
+			identifier = "cerca"
+			url = "/ca/cerca/"
+
+[author]
+	name = "sizeof(cat)"
+	url = "https://sizeof.cat"
+	avatar = "/img/avatar.jpg"
+	email = "sizeofcat@riseup.net"
+	gpg_key = "D7BBF1EEE7B62BB98079F7684E2294B480A2C731"
+	gpg_short_key = "80A2 C731"
+	motto = "For a bird born in captivity, flight is a mental illness."
+
+[sitemap]
+	changefreq = "weekly"
+	priority = 0.5
+	filename = "sitemap.xml"
+
+[params]
+	rip = "As George Costanza used to say, <i><strong>\"You know, we're living in a society!\"</strong></i>, but just in case we don't, remember this website has <a rel=\"noopener noreferrer\" href=\"http://sizeofaex6zgovemvemn2g3jfmgujievmxxxbcgnbrnmgcjcjpiiprqd.onion\">a mirror on the Tor network</a>, so bookmark it for safekeeping. RSS <a href=\"/index.xml\">feed is here</a>."
+	description = "For a bird born in captivity, flight is a mental illness."
+	announce = ""
+	banner = ""
+	banner_link = ""
+	banner_alt = ""
+	version = "3.x"
+	debug = false
+	since = "2015"
+	mood = ""
+	show_word_count = false
+	image = "img/sizeofcat.jpg"
+	keywords = [
+		"sizeof(cat)",
+		"sizeofcat",
+		"sizeof cat",
+		"sizeof.cat"
+	]
+	archive_paginate = 1000
+	feed_results = 10
+	enable_meta_boxes = true
+	show_meta_box = true
+	content_copyright = false
+	customcss = []
+	customjsheader = []
+	customjsfooter = []
+	stats_sections = ["post", "music", "link", "photo", "review", "so.cl", "project"]
+	home_sections = ["post", "music", "link", "photo", "review"]
+	archive_sections = ["post", "music", "link", "photo", "review"]
+	full_archive_sections = ["post", "music", "link", "photo", "review", "so.cl"]
+	feed_sections = ["post", "music", "review"]
+	search_skip_sections = ["others", "games", "links"]
+	socl_section = ["so.cl"]
+	webmention_domain = "sizeof.cat"
+	auth_endpoint = "https://indieauth.com/auth"
+	token_endpoint = "https://tokens.indieauth.com/token"
+	enable_webmentions = false
+	dateFormat = "January 2, 2006"
+
+[blackfriday]
+	noreferrerLinks = true
+
+[outputFormats]
+	[outputFormats.jsonfeed]
+		mediaType = "application/json"
+		baseName = "feed"
+		isPlainText = true
+
+	[outputFormats.statistics]
+		mediaType = "application/json"
+		baseName = "statistics"
+		isPlainText = true
+
+	[outputFormats.socl]
+		mediaType = "application/xml"
+		baseName = "socl"
+		isPlainText = false
+
+	[outputFormats.search]
+		mediaType = "application/json"
+		baseName = "search"
+		isPlainText = true
+
+	[outputFormats.Atom]
+		mediaType = "application/atom"
+		baseName = "atom"
+		isPlainText = false
+
+	[outputFormats.OPML]
+		mediaType = "application/xml"
+		baseName = "opml"
+		isPlainText = false
+
+[outputs]
+	home = ["html", "rss", "search", "jsonfeed", "statistics", "atom", "opml", "socl"]
+	page = ["html"]
+	section = ["html"]
+	taxonomy = ["html"]
+	term = ["html"]
+
+[mediaTypes]
+	[mediaTypes."application/atom"]
+		suffixes = ["xml"]
+
+[Taxonomies]
+	tags = "tags"
+
+[related]
+	threshold = 50
+	includeNewer = true
+	toLower = false
+
+[[related.indices]]
+	name  = "author"
+	toLower = true
+	weight = 50
+
+[[related.indices]]
+	name  = "tags"
+	weight = 100
+
+[[related.indices]]
+	name  = "date"
+	weight = 50
+	pattern = "2006"
+
+[markup]
+	defaultMarkdownHandler = "goldmark"
+  [markup.highlight]
+	anchorLineNos = false
+	codeFences = true
+	guessSyntax = false
+	hl_Lines = ""
+	lineAnchors = ""
+	lineNoStart = 1
+	lineNos = false
+	lineNumbersInTable = true
+	noClasses = false
+	style = "dracula"
+	tabWidth = 4
+
+[markup.goldmark.renderer]
+	unsafe= true

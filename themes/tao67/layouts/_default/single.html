@@ -1,0 +1,40 @@
+{{ define "content" -}}
+	<article class="h-entry post">
+		<header>
+			<h1 class="p-name">{{ .Title }}</h1>
+		</header>
+		<div class="p-content content">
+			{{ if .Params.image -}}
+			<div class="cover">
+				{{- if .Params.bigImage -}}
+				<a href="{{ .Params.bigImage }}">
+					<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+				</a>
+				{{- else -}}
+					<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+				{{- end -}}
+			</div>
+			{{- end }}
+			{{- partial "post/toc.html" . -}}
+			{{ if .Params.outdated }}
+			<div class="a-n notify table danger">
+				<p class="title">{{ i18n "outdated" }}</p>
+				<div class="contents">{{ i18n "outdated2" }}</div>
+			</div>
+			{{ end }}
+			{{ if .Params.inprogress }}
+			<div class="a-n notify table normal">
+				<p class="title">{{ i18n "inprogress" }}</p>
+				<div class="contents">{{ i18n "inprogress2" }}</div>
+			</div>
+			{{ end }}
+			{{ .Content }}
+			{{ if not .Params.nocopyright }}
+			{{ partial "post/copyright.html" . }}
+			{{- end}}
+			{{ if not .Params.notranslations }}
+			{{ partial "post/translations.html" . }}
+			{{- end}}
+		</div>
+	</article>
+{{- end }}

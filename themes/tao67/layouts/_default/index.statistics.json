@@ -1,0 +1,121 @@
+{
+{{ range $si, $v := .Site.Params.stats_sections }}
+  {{ if $si }},{{ end }}
+  {{ $arr := where $.Site.RegularPages "Section" "eq" $v }}
+  {{ range $i, $p := $arr }}
+	{{ if not $i }}
+	  {{ $.Scratch.Delete "days" }}
+	  {{ $.Scratch.Delete "week" }}
+	  {{ $.Scratch.Delete "hours" }}
+	  {{ $.Scratch.Delete "months" }}
+	  {{ $.Scratch.Delete "years" }}
+	  {{ $.Scratch.Delete "words" }}
+	  {{ $.Scratch.Delete "wordsyears" }}
+
+	  {{ $.Scratch.SetInMap "words" "A 0-25" 0 }}
+	  {{ $.Scratch.SetInMap "words" "B 26-50" 0 }}
+	  {{ $.Scratch.SetInMap "words" "C 51-70" 0 }}
+	  {{ $.Scratch.SetInMap "words" "D 71-100" 0 }}
+	  {{ $.Scratch.SetInMap "words" "E 101-200" 0 }}
+	  {{ $.Scratch.SetInMap "words" "F 201-300" 0 }}
+	  {{ $.Scratch.SetInMap "words" "G 301-400" 0 }}
+	  {{ $.Scratch.SetInMap "words" "H 401-500" 0 }}
+	  {{ $.Scratch.SetInMap "words" "I 501-1000" 0 }}
+	  {{ $.Scratch.SetInMap "words" "J 1001-1500" 0 }}
+	 	{{ $.Scratch.SetInMap "words" "K 1501+" 0 }}
+	  {{ range seq 0 23 }}
+		{{ $.Scratch.SetInMap "hours" (printf "%02d" . | string) 0 }}
+	  {{ end }}
+	  {{ range seq 1 31 }}
+		{{ $.Scratch.SetInMap "days" (printf "%02d" . | string) 0 }}
+	  {{ end }}
+	  {{ $.Scratch.SetInMap "week" "Mon" 0 }}
+	  {{ $.Scratch.SetInMap "week" "Tue" 0 }}
+	  {{ $.Scratch.SetInMap "week" "Wed" 0 }}
+	  {{ $.Scratch.SetInMap "week" "Thu" 0 }}
+	  {{ $.Scratch.SetInMap "week" "Fri" 0 }}
+	  {{ $.Scratch.SetInMap "week" "Sat" 0 }}
+	  {{ $.Scratch.SetInMap "week" "Sun" 0 }}
+	  {{ range seq 1 12 }}
+		{{ $.Scratch.SetInMap "months" (printf "%02d" . | string) 0 }}
+	  {{ end }}
+	  {{ range seq 2015 2023 }}
+		{{ $.Scratch.SetInMap "years" (printf "%02d" . | string) 0 }}
+	  {{ end }}
+	  {{ range seq 2015 2023 }}
+		{{ $.Scratch.SetInMap "wordsyears" (printf "%02d" . | string) 0 }}
+	  {{ end }}
+	{{ end }}
+
+	{{ $hourIndex := dateFormat "15" $p.Date | string }}
+	{{ $oldCount_h := index ($.Scratch.Get "hours") $hourIndex }}
+	{{ $.Scratch.SetInMap "hours" (string $hourIndex) (add $oldCount_h 1) }}
+
+	{{ $dayIndex := dateFormat "02" $p.Date | string }}
+	{{ $oldCount_d := index ($.Scratch.Get "days") (string $dayIndex) }}
+	{{ $.Scratch.SetInMap "days" (string $dayIndex) (add $oldCount_d 1) }}
+
+	{{ $dayOfWeekIndex := $p.Date.Format "Mon" }}
+	{{ $oldCount_w := index ($.Scratch.Get "week") (string $dayOfWeekIndex) }}
+	{{ $.Scratch.SetInMap "week" (string $dayOfWeekIndex) (add $oldCount_w 1) }}
+
+	{{ $monthIndex := dateFormat "01" $p.Date | string }}
+	{{ $oldCount_m := index ($.Scratch.Get "months") (string $monthIndex) }}
+	{{ $.Scratch.SetInMap "months" (string $monthIndex) (add $oldCount_m 1) }}
+
+	{{ $yearsIndex := dateFormat "2006" $p.Date | string }}
+	{{ $oldCount_y := index ($.Scratch.Get "years") (string $yearsIndex) }}
+	{{ $.Scratch.SetInMap "years" (string $yearsIndex) (add $oldCount_y 1) }}
+
+	{{ $wordsYearsIndex := dateFormat "2006" $p.Date | string }}
+	{{ $oldCount_z := index ($.Scratch.Get "wordsyears") (string $wordsYearsIndex) }}
+	{{ $.Scratch.SetInMap "wordsyears" (string $wordsYearsIndex) (add $oldCount_z $p.WordCount) }}
+
+	{{ if le .WordCount 25}}
+		{{ $oldCount := index ($.Scratch.Get "words") "A 0-25" }}
+		{{ $.Scratch.SetInMap "words" "A 0-25" (add $oldCount 1) }}
+	{{ else if le .WordCount 50 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "B 26-50" }}
+		{{ $.Scratch.SetInMap "words" "B 26-50" (add $oldCount 1) }}
+	{{ else if le .WordCount 70 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "C 51-70" }}
+		{{ $.Scratch.SetInMap "words" "C 51-70" (add $oldCount 1) }}
+	{{ else if le .WordCount 100 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "D 71-100" }}
+		{{ $.Scratch.SetInMap "words" "D 71-100" (add $oldCount 1) }}
+	{{ else if le .WordCount 200 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "E 101-200" }}
+		{{ $.Scratch.SetInMap "words" "E 101-200" (add $oldCount 1) }}
+	{{ else if le .WordCount 300 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "F 201-300" }}
+		{{ $.Scratch.SetInMap "words" "F 201-300" (add $oldCount 1) }}
+	{{ else if le .WordCount 400 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "G 301-400" }}
+		{{ $.Scratch.SetInMap "words" "G 301-400" (add $oldCount 1) }}
+	{{ else if le .WordCount 500 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "H 401-500" }}
+		{{ $.Scratch.SetInMap "words" "H 401-500" (add $oldCount 1) }}
+	{{ else if le .WordCount 1000 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "I 501-1000" }}
+		{{ $.Scratch.SetInMap "words" "I 501-1000" (add $oldCount 1) }}
+	{{ else if le .WordCount 1500 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "J 1001-1500" }}
+		{{ $.Scratch.SetInMap "words" "J 1001-1500" (add $oldCount 1) }}
+	{{ else if ge .WordCount 1500 }}
+		{{ $oldCount := index ($.Scratch.Get "words") "K 1501+" }}
+		{{ $.Scratch.SetInMap "words" "K 1501+" (add $oldCount 1) }}
+	{{ end }}
+	{{ if eq (len $arr) (add 1 $i) }}
+	  "{{ .Section }}": {
+		"w": {{ $.Scratch.Get "week" | sort |  jsonify }},
+		"dc": {{ $.Scratch.Get "days" | sort |  jsonify }},
+		"h": {{ $.Scratch.Get "hours" | sort |  jsonify }},
+		"m": {{ $.Scratch.Get "months" | sort |  jsonify }},
+		"y": {{ $.Scratch.Get "years" | sort |  jsonify }},
+		"wo": {{ $.Scratch.Get "words" | sort |  jsonify }},
+		"yw": {{ $.Scratch.Get "wordsyears" | sort |  jsonify }}
+	  }
+	{{ end }}
+  {{ end }}
+{{ end }}
+}

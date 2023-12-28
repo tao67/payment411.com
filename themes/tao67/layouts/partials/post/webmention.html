@@ -1,0 +1,17 @@
+{{ if eq .Site.Params.enable_webmentions true }}
+<div class="notify special post-webmentions">
+	<div class="section-icon left"><i fill="currentColor" style="display: inline-block;"><svg stroke="none" style="display: inline-block; vertical-align: middle;" height="32" width="32" fill="currentColor"><g><path d="M7,20a4,4,0,1,1,4-4A4,4,0,0,1,7,20Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,7,14Z"/><path d="M25,12a4,4,0,1,1,4-4A4,4,0,0,1,25,12Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,25,6Z"/><path d="M25,28a4,4,0,1,1,4-4A4,4,0,0,1,25,28Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,25,22Z"/><path d="M22,23a1,1,0,0,1-.58-.19C16.79,19.51,15,18.71,9.68,17a1,1,0,1,1,.64-1.9c5.5,1.84,7.52,2.75,12.26,6.14A1,1,0,0,1,22,23Z"/><path d="M10,17a1,1,0,0,1-.95-.68,1,1,0,0,1,.63-1.27c5.27-1.76,7.11-2.56,11.74-5.86a1,1,0,1,1,1.16,1.62c-4.74,3.39-6.76,4.3-12.26,6.14A1.25,1.25,0,0,1,10,17Z"/></g></svg></i></div>
+	<div class="contents">
+		<p>{{ i18n "Webmentions1" }} <a rel="noopener noreferrer" href="https://indieweb.org/responses">{{ i18n "Webmentions2" }}</a> {{ i18n "Webmentions3" }}:</p>
+		<div class="manual-webmention">
+			<form id="manual-webmention" action="https://webmention.io/{{ .Site.Params.webmention_domain }}/webmention" method="post">
+				<input type="url" name="source" value="" />
+				<input type="hidden" name="target" value="{{ .Permalink | safeURL }}" />
+				<input class="button" type="submit" name="submit" value="Send Webmention" />
+			</form>
+		</div>
+		<p>{{ i18n "Webmentions4" }} <a rel="noopener noreferrer" href="http://indieweb.org/webmention">WebMention</a>.</p>
+		<div id="webmentions" class="webmentions"></div>
+	</div>
+</div>
+{{ end }}

@@ -1,0 +1,229 @@
+Archive:
+  other: "Archive"
+
+tags:
+  other: "tags"
+
+created:
+  other: "created"
+
+categories:
+  other: "categories"
+
+powered:
+  other: "Powered by %s"
+
+theme:
+  other: "Theme"
+
+siteUV:
+  other: "site uv: %s"
+
+sitePV:
+  other: "site pv: %s"
+
+pagePV:
+  other: "%s times read"
+
+prevPage:
+  other: "prev"
+
+nextPage:
+  other: "next"
+
+prevPost:
+  other: "prev"
+  
+nextPost:
+  other: "next"
+
+readMore:
+  other: "Read more ..."
+
+wordCount:
+  one: "{{ .Count }} word"
+  other: "{{ .Count }} words"
+
+readingTime:
+  one: "{{ .Count }} min read"
+  other: "{{ .Count }} mins read"
+
+author:
+  other: "author"
+
+lastMod:
+  other: "modified"
+
+markdown:
+  other: "Markdown"
+
+seeMarkDown:
+  other: "The Markdown version »"
+
+license:
+  other: "license"
+
+archiveCounter:
+  one: "{{ .Count }} Post In Total"
+  other: "{{ .Count }} Posts In Total"
+
+tagCounter:
+  one: "{{ .Count }} Tag In Total"
+  other: "{{ .Count }} Tags In Total"
+
+zeroTagCounter:
+  other: "No tags"
+
+categoryCounter:
+  one: "{{ .Count }} Category In Total"
+  other: "{{ .Count }} Categories In Total"
+
+zeroCategoryCounter:
+  other: "No categories"
+
+Share:
+  other: "Share"
+
+url:
+  other: "url"
+  
+toc:
+  other: "Contents"
+
+BackHome:
+  other: "Back Home"
+
+outdated:
+  other: "Check out the date on this baby!!"
+
+outdated2:
+  other: "This content was originally published a while ago and could be quite outdated."
+
+inprogress:
+  other: "Under construction"
+
+inprogress2:
+  other: "Hold your horses, this page is work in progress."
+
+footer1:
+  other: "No external JavaScript, no analytics,"
+
+footer2:
+  other: "no social tracking scripts"
+
+footer3:
+  other: "Just what matters:"
+
+footer4:
+  other: "the content"
+
+footeryear:
+  other: "since 2015"
+
+nickname:
+  other: "Nickname"
+
+job:
+  other: "Job"
+
+pgpKey:
+  other: "PGP key"
+
+job1:
+  other: "Consultant, Hacker"
+
+source:
+  other: "source"
+
+version:
+  other: "version"
+
+Meta:
+  other: "Meta"
+
+updated:
+  other: "updated"
+
+image:
+  other: "image"
+
+mood:
+  other: "mood"
+
+Links:
+  other: "Links"
+
+RelatedPosts:
+  other: "Related articles"
+
+RelatedPosts2:
+  other: "Check out some related articles"
+
+Syndication:
+  other: "Syndication"
+
+Syndication2:
+  other: "This article was also posted to these websites"
+
+Webmentions:
+  other: "Webmentions"
+
+Webmentions1:
+  other: "Have you written a"
+
+Webmentions2:
+  other: "response"
+
+Webmentions3:
+  other: "to this article? Let me know the URL"
+
+Webmentions4:
+  other: "Below you can find the interactions that this page has had using"
+
+photography:
+  other: "photography"
+
+music:
+  other: "music"
+
+bookmarks:
+  other: "bookmarks"
+
+years:
+  other: "years"
+
+Years:
+  other: "Years"
+
+Fullarchive:
+  other: "Full archive"
+
+reviews:
+  other: "reviews"
+
+Translations:
+  other: "Traduccions"
+
+Translations2:
+  other: "This page is also translated into the following languages"
+
+metadata:
+  other: "Page metadata:"
+
+Page:
+  other: "Page"
+
+firstpage:
+  other: "First"
+
+lastpage:
+  other: "Last"
+
+nextpage:
+  other: "Next"
+
+prevpage:
+  other: "Previous"
+
+words:
+  other: "words"

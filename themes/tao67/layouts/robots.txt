@@ -1,0 +1,18 @@
+User-agent: *
+{{ range where .Site.RegularPages "Params.robotsdisallow" true }}
+Disallow: {{ .RelPermalink }}
+{{ end }}
+Disallow: /tags/
+Disallow: /super-secret-data/
+Sitemap: {{ "sitemap.xml" | absURL }}
+User-agent: ia_archiver
+Disallow: /
+
+#             o8o                                  .o88o.   .o                         .   o.   
+#             `"'                                  888 `"  .8'                       .o8   `8.  
+#    .oooo.o oooo    oooooooo  .ooooo.   .ooooo.  o888oo  .8'   .ooooo.   .oooo.   .o888oo  `8. 
+#   d88(  "8 `888   d'""7d8P  d88' `88b d88' `88b  888    88   d88' `"Y8 `P  )88b    888     88 
+#   `"Y88b.   888     .d8P'   888ooo888 888   888  888    88   888        .oP"888    888     88 
+#   o.  )88b  888   .d8P'  .P 888    .o 888   888  888    `8.  888   .o8 d8(  888    888 .  .8' 
+#   8""888P' o888o d8888888P  `Y8bod8P' `Y8bod8P' o888o    `8. `Y8bod8P' `Y888""8o   "888" .8'  
+#                                                           `"                             "'   

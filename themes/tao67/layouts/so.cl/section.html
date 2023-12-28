@@ -1,0 +1,156 @@
+{{ define "title" }}so.cl - {{ .Site.Title }}{{ end }}
+{{ define "content"}}
+{{- $paginator := .Paginate (where .Site.RegularPages "Section" "in" (slice "so.cl")) 20 }}
+<section class="archive socls">
+	{{- if not $paginator.HasPrev }}
+		<div class="archive-title">
+			<span class="ap-counter">
+				{{ i18n "archiveCounter" (len .Site.RegularPages) }}
+			</span>
+		</div>
+	{{- end -}}
+	<div class="toolbox">
+		<a href="/socl.xml" title="RSS 2.0 feed" class="btn">
+			<svg viewBox="0 0 48 48" fill="currentColor"><path d="M0 0h48v48H0z" fill="none"/><circle cx="12.36" cy="35.64" r="4.36"/><path d="M8 8.89v5.66c14.06 0 25.46 11.4 25.46 25.46h5.66C39.11 22.82 25.18 8.89 8 8.89zM8 20.2v5.66c7.81 0 14.14 6.34 14.14 14.14h5.66c0-10.93-8.87-19.8-19.8-19.8z"/></svg>
+		</a>
+	</div>
+	<h1>so<span>.</span>cl</h1>
+	<div class="content">
+		<blockquote>
+			<p>Rascals are always sociable, and the chief sign that a man has any nobility in his character is the little pleasure he takes in others company. <strong>Arthur Schopenhauer</strong></p>
+		</blockquote>
+	</div>
+	<br />
+	{{- range $index, $element := $paginator.Pages -}}
+	<article class="h-entry socl{{- if eq .Params.weight 1 }} pinned{{- end }}" data-socl-id="{{ .Date.Unix }}">
+		<div class="section-icon left">
+			<a class="syndication-icon u-url" title="Permalink to this so.cl post" href="/so.cl/{{ .Date.Unix }}">
+			{{- if .Params.socl_img }}
+			<svg fill="currentColor" p-kind="photo" viewBox="0 0 42 42"><g transform="translate(6, 4)"><path d="M29,31H3a1,1,0,0,1-1-1V2A1,1,0,0,1,3,1H29a1,1,0,0,1,1,1V30A1,1,0,0,1,29,31ZM4,29H28V3H4Z"/><path class="cls-1" d="M3,25a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42l4.8-4.8A3,3,0,0,1,11,18.17l4.24,3a1,1,0,0,0,1.29-.11l4.39-4.38a3,3,0,0,1,4.24,0l4.59,4.58a1,1,0,0,1-1.42,1.42l-4.58-4.59a1,1,0,0,0-1.42,0l-4.38,4.39a3,3,0,0,1-3.87.32l-4.24-3a1,1,0,0,0-1.29.11l-4.8,4.8A1,1,0,0,1,3,25Z"/><path d="M17,14a4,4,0,1,1,4-4A4,4,0,0,1,17,14Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,17,8Z"/></g></svg>
+			{{- else if .Params.socl_url }}
+			<svg fill="currentColor" p-kind="bookmark" viewBox="0 0 72 72"><g transform="translate(10, 6)"><path d="M3.428,31.085c6.19,0,12.009,2.418,16.382,6.816c4.381,4.398,6.793,10.256,6.793,16.492h9.539  c0-18.113-14.676-32.848-32.714-32.848V31.085z M3.443,14.174c22.061,0,40.01,18.047,40.01,40.231h9.539  c0-27.445-22.229-49.77-49.549-49.77V14.174z M16.634,47.741c0,3.648-2.959,6.607-6.607,6.607S3.42,51.39,3.42,47.741  c0-3.65,2.958-6.607,6.606-6.607S16.634,44.091,16.634,47.741z"/></g></svg>
+			{{- else if .Params.socl_video }}
+			<svg fill="currentColor" p-kind="video" viewBox="0 0 128 128"><g transform="translate(4, 6)"><path class="cls-1" d="M64,32.29c.23,0,22.92,0,37.9,1.08l.66.06c2,.18,4.16.39,6.28,2.58l0,0,0,0c1,1,2.14,4.54,2.53,7.07a156,156,0,0,1,1,16.71v8.24a156.82,156.82,0,0,1-1,16.72c-.37,2.47-1.54,6.06-2.52,7l0,0,0,0c-2.11,2.18-4.32,2.39-6.27,2.58l-.68.07c-14.72,1-36.89,1.1-37.89,1.1-1.15,0-28-.27-36.57-1-.51-.08-1-.15-1.58-.21-2.28-.27-4.87-.58-6.73-2.51l0,0,0,0c-1-1-2.14-4.53-2.52-7.05a156,156,0,0,1-1-16.71V59.86a156.79,156.79,0,0,1,1-16.71c.39-2.55,1.55-6.09,2.53-7.07l0,0,0,0c2.12-2.19,4.33-2.39,6.28-2.58l.66-.06c15-1.07,37.67-1.08,37.89-1.08H64m0-6.5H64s-23.09,0-38.48,1.1c-2.15.25-6.83.27-11,4.59-3.29,3.3-4.37,10.79-4.37,10.79A162.25,162.25,0,0,0,9,59.86V68.1a162.19,162.19,0,0,0,1.1,17.59s1.07,7.49,4.37,10.78c4.19,4.32,9.68,4.19,12.13,4.65,8.8.83,37.4,1.09,37.4,1.09s23.11,0,38.51-1.13c2.15-.25,6.84-.28,11-4.6,3.29-3.29,4.37-10.78,4.37-10.78A162.26,162.26,0,0,0,119,68.11V59.87a162.27,162.27,0,0,0-1.1-17.59s-1.07-7.49-4.37-10.79c-4.18-4.32-8.87-4.35-11-4.59C87.11,25.79,64,25.79,64,25.79Z"/><polygon points="54.13 47.61 54.13 80.39 82.12 64 54.13 47.61"/></g></svg>
+			{{- else if .Params.socl_reply }}
+			{{- if strings.Contains .Params.socl_reply "@so.cl" }}
+			<svg fill="currentColor" p-kind="repost" viewBox="0 0 50 56"><g transform="matrix(0.1,0,0,-0.1,-139.973,55.8217)"><path d="M1782,528C1771,510 1761,489 1758,481C1755,471 1738,465 1710,464C1686,463 1647,459 1624,455C1582,449 1580,450 1554,489C1525,533 1497,548 1475,530C1467,523 1448,493 1433,463C1397,389 1389,262 1415,193C1461,72 1613,-19 1719,10C1779,26 1841,87 1875,162C1900,217 1902,231 1897,304C1891,401 1844,553 1819,558C1809,560 1794,548 1782,528ZM1850,262C1850,236 1821,200 1800,200C1746,200 1732,239 1778,264C1816,285 1850,284 1850,262ZM1598,244C1610,236 1620,223 1620,216C1620,198 1566,177 1542,184C1518,192 1487,236 1495,250C1505,266 1573,262 1598,244ZM1720,155C1713,147 1702,140 1695,140C1688,140 1677,147 1670,155C1659,168 1663,170 1695,170C1727,170 1731,168 1720,155Z" /></g></svg>
+			{{ else if strings.Contains .Params.socl_reply_url "nitter.net" }}
+			<svg fill="currentColor" p-kind="repost" viewBox="0 0 512 512"><path d="M161.014,464.013c193.208,0 298.885,-160.071 298.885,-298.885c0,-4.546 0,-9.072 -0.307,-13.578c20.558,-14.871 38.305,-33.282 52.408,-54.374c-19.171,8.495 -39.51,14.065 -60.334,16.527c21.924,-13.124 38.343,-33.782 46.182,-58.102c-20.619,12.235 -43.18,20.859 -66.703,25.498c-19.862,-21.121 -47.602,-33.112 -76.593,-33.112c-57.682,0 -105.145,47.464 -105.145,105.144c0,8.002 0.914,15.979 2.722,23.773c-84.418,-4.231 -163.18,-44.161 -216.494,-109.752c-27.724,47.726 -13.379,109.576 32.522,140.226c-16.715,-0.495 -33.071,-5.005 -47.677,-13.148l0,1.331c0.014,49.814 35.447,93.111 84.275,102.974c-15.464,4.217 -31.693,4.833 -47.431,1.802c13.727,42.685 53.311,72.108 98.14,72.95c-37.19,29.227 -83.157,45.103 -130.458,45.056c-8.358,-0.016 -16.708,-0.522 -25.006,-1.516c48.034,30.825 103.94,47.18 161.014,47.104" /></svg>
+			{{ else if strings.Contains .Params.socl_reply_url "teddit.net" }}
+			<svg fill="currentColor" p-kind="repost" viewBox="0 0 56.7 56.7"><g><g><path d="M53.048,28.4457c0-3.1373-2.5525-5.6899-5.6899-5.6899c-1.3956,0-2.7116,0.5049-3.7506,1.419 c-3.7627-2.4079-8.7834-3.925-14.3215-4.0884l3.3886-11.5903l8.3201,1.5458c-0.0004,0.0676-0.0135,0.1321-0.01,0.2004 c0.101,1.9801,1.7938,3.5086,3.774,3.4076c1.98-0.101,3.5086-1.7939,3.4076-3.7739c-0.101-1.9801-1.7938-3.5086-3.7739-3.4076 c-1.2785,0.0652-2.3605,0.7985-2.9455,1.8398c-0.001-0.0003-0.0019-0.001-0.003-0.0012l-10.026-1.8626l-3.9934,13.6388 c-5.5515,0.148-10.5881,1.6563-14.367,4.0598c-1.0335-0.8944-2.3358-1.3872-3.7156-1.3872c-3.1372,0-5.6899,2.5525-5.6899,5.6899 c0,1.9405,0.999,3.7299,2.6167,4.7739c-0.0983,0.5678-0.1544,1.1443-0.1544,1.7296c0,8.2127,9.9554,14.8948,22.1934,14.8948 S50.501,43.1618,50.501,34.9492c0-0.5684-0.0522-1.1283-0.1451-1.6803C52.0182,32.2329,53.048,30.4167,53.048,28.4457z M17.7602,32.3183c0-1.9298,1.565-3.4956,3.4975-3.4956c1.9307,0,3.4957,1.5658,3.4957,3.4956 c0,1.9316-1.565,3.4966-3.4957,3.4966C19.3252,35.8149,17.7602,34.2499,17.7602,32.3183z M36.5501,41.7755 c-0.1042,0.109-2.6132,2.6615-8.2833,2.6615c-5.6992,0-7.9791-2.5879-8.073-2.6977c-0.3213-0.3752-0.2775-0.9403,0.0977-1.2605 c0.3733-0.3184,0.9328-0.2774,1.255,0.0921c0.0511,0.0559,1.954,2.0788,6.7204,2.0788c4.8492,0,6.9754-2.0946,6.9968-2.115 c0.3435-0.35,0.9086-0.3584,1.2614-0.0149C36.8759,40.8623,36.889,41.4209,36.5501,41.7755z M35.8547,35.8149 c-1.9326,0-3.4975-1.565-3.4975-3.4966c0-1.9298,1.565-3.4956,3.4975-3.4956c1.9308,0,3.4957,1.5658,3.4957,3.4956 C39.3504,34.2499,37.7855,35.8149,35.8547,35.8149z"/></g></g></svg>
+			{{ else }}
+			<svg fill="currentColor" p-kind="repost" viewBox="0 0 56 56"><g transform="translate(2, 2)"><path d="M14 16v-6L0 24l14 14v-6l-8-8 8-8zm12 2v-8L12 24l14 14v-8.2c10 0 17 3.2 22 10.2-2-10-8-20-22-22z"/><path d="M0 0h48v48H0z" fill="none"/></g></svg>
+			{{ end }}
+			{{ else if eq .Params.weight 1 }}
+			<svg fill="currentColor" viewBox="0 0 20 20"><g transform="translate(2, 2)"><path d="M14,5.707L14.707,5L14.03,4.323l-3.646-3.646L9.707,0L9,0.707L9.613,1.32L4.384,5.677L3.707,5L3,5.707L3.613,6.32  l2.034,2.034L0,14l0.707,0.707l5.646-5.646l2.034,2.034L9,11.707L9.707,11L9.03,10.323l4.357-5.229L14,5.707z M8.32,9.613  L5.094,6.387l5.229-4.357l2.354,2.354L8.32,9.613z"/></g></svg>
+			{{ else if eq .Params.encrypted true }}
+			<svg fill="currentColor" viewBox="0 0 32 32"><g><path d="M23,14v-2c0-3.866-3.134-7-7-7s-7,3.134-7,7v2H7v13h18V14H23z M11,12c0-2.757,2.243-5,5-5c2.757,0,5,2.243,5,5v2H11V12z M23,25H9v-9h14V25z"/><path d="M15,20.611V23h2v-2.389c0.305-0.275,0.5-0.668,0.5-1.111c0-0.828-0.672-1.5-1.5-1.5s-1.5,0.672-1.5,1.5    C14.5,19.943,14.695,20.336,15,20.611z"/></g></svg>
+			{{ else }}
+			<svg fill="currentColor" p-kind="post" viewBox="0 0 32 32"><g transform="translate(4, 4)"><path d="M20.9,0H1.1C0.5,0,0,0.5,0,1.1v21.8C0,23.5,0.5,24,1.1,24h19.8c0.6,0,1.1-0.5,1.1-1.1V1.1C22,0.5,21.5,0,20.9,0z M20,22H2 V2h18V22z"/><rect height="1" width="6" x="11" y="6"/><rect height="1" width="6" x="11" y="8"/><rect height="1" width="6" x="11" y="10"/><rect height="1" width="12" x="5" y="16"/><rect height="1" width="12" x="5" y="14"/><rect height="1" width="12" x="5" y="12"/><rect height="1" width="12" x="5" y="18"/><path d="M5,6v5h5V6H5z M9,10H6V7h3V10z"/></g></svg>
+			{{- end }}
+			</a>
+		</div>
+		<div class="content e-content p-name p-summary">
+			{{- if .Params.socl_img }}
+			{{ .Content }}
+			{{- else if .Params.socl_url }}
+			{{ .Content }}
+			{{- else if .Params.socl_reply }}
+			 → in reply to <a class="u-repost-of" rel="noopener noreferrer" data-socl="{{ .Params.socl_reply_url }}" href="
+			{{- if strings.Contains .Params.socl_reply "@so.cl" }}
+			/so.cl/{{ .Params.socl_reply_url }}/
+			{{ else }}
+			{{ .Params.socl_reply_url }}
+			{{- end }}
+			">{{ .Params.socl_reply }}</a>
+			{{ .Content }}
+			{{ else }}
+			{{ .Content }}
+			{{- end }}
+		</div>
+		<div class="socl-action"></div>
+		<div class="socl-footer">
+			<div class="date">
+				<span class="dt-published" datetime="{{ .Date.Format ("02 Jan 2006 15:04 MST") }}"> {{ .Params.date.Format .Site.Params.dateFormat }}</span>
+			</div>
+			<div class="shared">
+				{{- if .Params.socl_github }}
+				<a class="syndication-icon" rel="noopener noreferrer" title="GitHub" href="{{ .Params.socl_github }}"><svg fill="currentColor" viewBox="0 0 22 22"><g><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.475 2 2 6.475 2 12a9.994 9.994 0 0 0 6.838 9.488c.5.087.687-.213.687-.476 0-.237-.013-1.024-.013-1.862-2.512.463-3.162-.612-3.362-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.087.638-1.337-2.225-.25-4.55-1.113-4.55-4.938 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.262 2.75 1.026a9.28 9.28 0 0 1 2.5-.338c.85 0 1.7.112 2.5.337 1.912-1.3 2.75-1.024 2.75-1.024.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.687 0 3.838-2.337 4.688-4.562 4.938.362.312.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .262.188.574.688.474A10.016 10.016 0 0 0 22 12c0-5.525-4.475-10-10-10z"/></g></svg></a>
+				{{- end }}
+				{{- if .Params.socl_mastodon }}
+				<a class="syndication-icon" rel="noopener noreferrer" title="Syndicated to Mastodon" href="{{ .Params.socl_mastodon }}"><svg fill="currentColor" viewBox="0 0 512 512"><g><g><path d="M460.491,180.711c0-95.137-62.347-123.03-62.347-123.03c-61.172-28.091-223.648-27.798-284.232,0 c0,0-62.347,27.894-62.347,123.03c0,113.243-6.46,253.89,103.357,282.96c39.639,10.47,73.7,12.722,101.105,11.156 c49.721-2.74,77.615-17.717,77.615-17.717l-1.662-36.117c0,0-35.531,11.16-75.463,9.886c-39.543-1.369-81.238-4.306-87.698-52.852 c-0.588-4.307-0.88-8.809-0.88-13.604c83.782,20.454,155.229,8.907,174.904,6.558c54.908-6.558,102.77-40.423,108.838-71.353 C461.275,250.888,460.491,180.711,460.491,180.711L460.491,180.711z M386.986,303.251h-45.61V191.477 c0-48.644-62.644-50.504-62.644,6.754v61.173h-45.314V198.23c0-57.258-62.641-55.398-62.641-6.754v111.774H125.07 c0-119.505-5.089-144.759,18.009-171.282c25.35-28.287,78.105-30.146,101.595,5.97l11.354,19.086l11.353-19.086 c23.589-36.313,76.441-34.061,101.595-5.97C392.174,158.688,386.986,183.843,386.986,303.251L386.986,303.251z"/></g></g></svg></a>
+				{{- end }}
+				{{- if .Params.socl_twitter }}
+				<a class="syndication-icon" rel="noopener noreferrer" title="Syndicated to Twitter" href="{{ .Params.socl_twitter }}"><svg fill="currentColor" viewBox="0 0 512 512"><path d="M161.014,464.013c193.208,0 298.885,-160.071 298.885,-298.885c0,-4.546 0,-9.072 -0.307,-13.578c20.558,-14.871 38.305,-33.282 52.408,-54.374c-19.171,8.495 -39.51,14.065 -60.334,16.527c21.924,-13.124 38.343,-33.782 46.182,-58.102c-20.619,12.235 -43.18,20.859 -66.703,25.498c-19.862,-21.121 -47.602,-33.112 -76.593,-33.112c-57.682,0 -105.145,47.464 -105.145,105.144c0,8.002 0.914,15.979 2.722,23.773c-84.418,-4.231 -163.18,-44.161 -216.494,-109.752c-27.724,47.726 -13.379,109.576 32.522,140.226c-16.715,-0.495 -33.071,-5.005 -47.677,-13.148l0,1.331c0.014,49.814 35.447,93.111 84.275,102.974c-15.464,4.217 -31.693,4.833 -47.431,1.802c13.727,42.685 53.311,72.108 98.14,72.95c-37.19,29.227 -83.157,45.103 -130.458,45.056c-8.358,-0.016 -16.708,-0.522 -25.006,-1.516c48.034,30.825 103.94,47.18 161.014,47.104" /></svg></a>
+				{{- end }}
+			</div>
+			<div class="tags">
+				{{ with .Params.tags -}}
+					{{ range $i, $e := . }}{{ if $i }} ▪ {{ end }}<a class="p-category" href="{{ "tags" | relLangURL }}/{{ . | urlize }}/"><span>#{{ . }}</span></a>{{ end }}
+				{{- end }}
+			</div>
+		</div>
+	</article>
+	{{- end -}}
+</section>
+<nav class="pagination">
+{{ $paginator := .Paginator }}
+{{ $adjacent_links := 2 }}
+{{ $max_links := (add (mul $adjacent_links 2) 1) }}
+{{ $lower_limit := (add $adjacent_links 1) }}
+{{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+{{ if gt $paginator.TotalPages 1 }}
+	<ul class="soclpage">
+		<li><strong>{{ i18n "Page" }}:</strong></li>
+	{{ if ne $paginator.PageNumber 1 }}
+		<li>
+			<a title="{{ i18n "firstpage" }}" href="{{ $paginator.First.URL }}">↤</a>
+		</li>
+	{{ end }}
+	{{ if $paginator.HasPrev }}
+		<li>
+			<a title="{{ i18n "prevpage" }}" href="{{ $paginator.Prev.URL }}">←</a>
+		</li>
+	{{ end }}
+	{{ range $paginator.Pagers }}
+		{{ $.Scratch.Set "page_number_flag" false }}
+		{{ if gt $paginator.TotalPages $max_links }}
+		{{ if le $paginator.PageNumber $lower_limit }}
+		  {{ if le .PageNumber $max_links }}
+			{{ $.Scratch.Set "page_number_flag" true }}
+		  {{ end }}
+		{{ else if ge $paginator.PageNumber $upper_limit }}
+		  {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
+			{{ $.Scratch.Set "page_number_flag" true }}
+		  {{ end }}
+		{{ else }}
+		  {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
+			{{ $.Scratch.Set "page_number_flag" true }}
+		  {{ end }}
+		{{ end }}
+	  {{ else }}
+		{{ $.Scratch.Set "page_number_flag" true }}
+	  {{ end }}
+	  {{ if eq ($.Scratch.Get "page_number_flag") true }}
+		<li{{ if eq . $paginator }} class="current"{{ end }}>
+		  <a href="{{ .URL }}">
+			{{ .PageNumber }}
+		  </a>
+		</li>
+	  {{ end }}
+	{{ end }}
+	{{ if $paginator.HasNext }}
+	<li>
+	  <a title="{{ i18n "nextpage" }}" href="{{ $paginator.Next.URL }}">→</a>
+	</li>
+	{{ end }}
+	{{ if ne $paginator.PageNumber $paginator.TotalPages }}
+	<li>
+	  <a title="{{ i18n "lastpage" }}" href="{{ $paginator.Last.URL }}">↦</a>
+	</li>
+	{{ end }}
+	</ul>
+{{ end }}
+</nav>
+<br />
+{{ end }}

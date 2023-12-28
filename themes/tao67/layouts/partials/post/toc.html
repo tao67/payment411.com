@@ -1,0 +1,6 @@
+{{ if .Params.toc }}
+<aside class="toc">
+	<h2 class="post-toc-title">{{ i18n "toc" }}</h2>
+	{{.TableOfContents}}
+</aside>
+{{ end }}

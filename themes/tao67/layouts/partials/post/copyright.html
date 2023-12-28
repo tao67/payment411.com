@@ -1,0 +1,93 @@
+{{ if or .Params.show_meta_box (and .Site.Params.show_meta_box (ne .Params.show_meta_box false)) -}}
+<div class="notify special copyright">
+	<div class="section-icon left"><i fill="currentColor" style="display: inline-block;"><svg stroke="none" style="display: inline-block; vertical-align: middle;" height="32" width="32" fill="currentColor"><g><path d="M16,29A13,13,0,1,1,29,16,13,13,0,0,1,16,29ZM16,5A11,11,0,1,0,27,16,11,11,0,0,0,16,5Z"/><path d="M16,17a5,5,0,1,1,5-5A5,5,0,0,1,16,17Zm0-8a3,3,0,1,0,3,3A3,3,0,0,0,16,9Z"/><path d="M25.55,24a1,1,0,0,1-.74-.32A11.35,11.35,0,0,0,16.46,20h-.92a11.27,11.27,0,0,0-7.85,3.16,1,1,0,0,1-1.38-1.44A13.24,13.24,0,0,1,15.54,18h.92a13.39,13.39,0,0,1,9.82,4.32A1,1,0,0,1,25.55,24Z"/></g></svg></i></div>
+	<div class="contents">
+		<div class="author">
+			<svg class="u-photo" viewBox="0 0 433 433"><g transform="translate(0.000000,433) scale(0.100000,-0.100000)" fill="#5550ED" stroke="none"><path d="M3428 4316 c-139 -49 -343 -341 -461 -661 l-33 -90 -69 5 c-143 10 -450 3 -575 -14 -173 -24 -350 -59 -508 -102 -73 -20 -135 -35 -136 -33 -2 2 -18 33 -36 69 -134 267 -397 581 -553 659 -78 39 -141 45 -196 17 -62 -33 -262 -325 -381 -561 -212 -417 -310 -821 -310 -1280 0 -576 147 -1035 458 -1429 73 -94 265 -281 367 -360 425 -328 947 -529 1375 -528 289 0 609 105 848 277 193 139 430 397 570 621 257 412 395 928 362 1359 -38 498 -240 1293 -457 1795 -100 233 -161 292 -265 256z m298 -2221 c3 -14 -3 -63 -14 -108 -57 -231 -143 -352 -290 -408 -76 -28 -205 -22 -307 14 -38 14 -87 28 -108 32 -84 16 -100 92 -39 194 111 189 342 297 644 300 107 1 108 1 114 -24z m-2159 -156 c173 -44 363 -197 363 -292 0 -55 -18 -69 -246 -193 -122 -67 -248 -80 -357 -37 -64 25 -153 92 -202 150 -53 63 -129 192 -155 261 -25 66 -21 73 60 95 178 49 385 55 537 16z m1191 -660 c2 -9 -29 -54 -68 -100 -89 -104 -116 -129 -141 -129 -20 0 -208 130 -242 168 -21 23 -13 50 17 57 36 9 267 23 351 21 65 -1 80 -4 83 -17z" /></g></svg>
+		</div>
+		{{ if .Params.version }}
+		<p class="item">
+			<span class="title">{{ i18n "version" }}</span>
+			<span class="content">{{ .Params.version }}</span>
+		</p>
+		{{ end }}
+		{{ if .Params.source }}
+		<p class="item">
+			<span class="title">{{ i18n "source" }}</span>
+			<span class="content">{{ .Params.source | safeHTML }}</span>
+		</p>
+		{{ end }}
+		<p class="item">
+			<span class="title">{{ i18n "author" }}</span>
+			<span class="content h-card p-author">
+				<a rel="author" class="u-url u-uid" href="{{ .Site.BaseURL }}">
+					<span class="p-name">
+					{{ if .Params.author }}
+						{{ .Params.author | safeHTML }}
+					{{ else }}
+						{{ .Site.Author.name | safeHTML }}
+					{{ end }}
+					</span>
+				</a>
+			</span>
+		</p>
+		{{ if .Site.Params.show_word_count  }}
+		<p class="item">
+			<span class="title">{{ i18n "words" }}</span>
+			<span class="content">
+				<span class="p-name">
+					{{ .WordCount }}
+				</span>
+			</span>
+		</p>
+		{{- end }}
+		{{ if not .Params.encrypted }}
+		{{ if or .Params.content_copyright (and .Site.Params.content_copyright (ne .Params.content_copyright false)) -}}
+		<p class="item">
+			<span class="title">{{ i18n "license" }}</span>
+			<span class="content">
+			{{- if .Params.content_copyright -}}
+				{{ .Params.content_copyright | safeHTML }}
+			{{- else -}}
+				{{ .Site.Params.content_copyright | safeHTML }}
+			{{- end -}}
+			</span>
+		</p>
+		{{- end }}
+		{{- end }}
+		<p class="item">
+			<span class="title">{{ i18n "created" }}</span>
+			<span>{{ .Date | time.Format ":date_full" }}</span>
+		</p>
+		{{ if ne .Lastmod .Date -}}
+		<p class="item">
+			<span class="title">{{ i18n "updated" }}</span>
+			<span>{{ .Lastmod | time.Format ":date_full" }}</span>
+		</p>
+		{{- end }}
+		{{ with .Params.tags -}}
+		<p class="item">
+			<span class="title">{{ i18n "tags" }}</span>
+				{{ range $i, $e := . }}{{ if $i }}, {{ end }}<a class="p-category" href="{{ "tags" | relLangURL }}/{{ . | urlize }}/">#{{ . }}</a>{{ end }}
+			</span>
+		</p>
+		{{- end }}
+		{{ if .Params.ImageSource }}
+		<p class="item">
+			<span class="title">{{ i18n "image" }}</span>
+			<span class="content">
+				<a rel="noopener noreferrer" href="{{ .Params.ImageSourceURL }}">
+					{{ .Params.ImageSource }}
+				</a>
+			</span>
+		</p>
+		{{ end }}
+		{{ if .Params.mood }}
+		<p class="item">
+			<span class="title">{{ i18n "mood" }}</span>
+			<span class="content emoji">{{ .Params.mood }}</span>
+		</p>
+		{{ end }}
+	</div>
+</div>
+{{- end }}

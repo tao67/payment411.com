@@ -1,0 +1,11 @@
+{{ if eq (.Get "details") "true" -}}
+<details class="notify table {{ .Get "type" }}">
+	{{- with .Get "title" }}<summary class="title">{{ . }}</summary>{{ end }}
+	{{ .Inner | markdownify }}
+</details>
+{{- else -}}
+<div class="a-n notify table {{ .Get "type" }}">
+	{{- with .Get "title" }}<p class="title">{{ . }}</p>{{ end }}
+	<div class="contents">{{ .Inner | markdownify }}</div>
+</div>
+{{- end }}

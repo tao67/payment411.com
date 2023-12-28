@@ -1,0 +1,70 @@
+{{ define "content" -}}
+	<article class="h-entry post">
+		<header>
+			<h1 class="p-name">
+				<a class="u-url" href="{{ .Permalink | safeURL }}">{{ .Title }}</a>
+			</h1>
+			<div class="meta">
+				<span class="dt-published" datetime="{{ .Date.Format ("02 Jan 2006 15:04 MST") }}"> {{ .Params.date.Format .Site.Params.dateFormat }} &nbsp;</span>&nbsp;<span> {{ .Section | humanize }} &nbsp;</span>
+				{{ if .Site.Params.enable_meta_boxes -}}
+				<span> {{ i18n "wordCount" .WordCount }} </span>&nbsp;<span> {{ i18n "readingTime" .ReadingTime }} </span>
+				{{- end }}
+			</div>
+		</header>
+		<div class="e-content content">
+			{{ if .Params.image -}}
+			<div class="cover">
+				{{- if .Params.bigImage -}}
+				<a href="{{ .Params.bigImage }}">
+					<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+				</a>
+				{{- else -}}
+					<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+				{{- end -}}
+			</div>
+			{{- end }}
+			{{- partial "post/toc.html" . -}}
+			{{ if .Params.outdated }}
+			<div class="a-n notify table danger">
+				<p class="title">{{ i18n "outdated" }}</p>
+				<div class="contents">{{ i18n "outdated2" }}</div>
+			</div>
+			{{ end }}
+			{{ if .Params.inprogress }}
+			<div class="a-n notify table normal">
+				<p class="title">{{ i18n "inprogress" }}</p>
+				<div class="contents">{{ i18n "inprogress2" }}</div>
+			</div>
+			{{ end }}
+			{{ .Content }}
+		</div>
+		<div class="p-summary hidden">
+			{{ .Params.description }}
+		</div>
+		{{ partial "post/copyright.html" . }}
+		{{ partial "post/translations.html" . }}
+		{{ if not .Params.encrypted }}
+		{{ partial "post/webmention.html" . }}
+		{{ partial "post/syndication.html" . }}
+		{{ partial "post/related.html" . }}
+		{{ end }}
+		<footer class="post-footer">
+			<nav class="post-nav">
+				{{ with .NextInSection }}
+					<a class="prev" href="{{ .Permalink | safeURL }}">
+						<i class="glyph left"><svg viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(237, 335)"><polyline points="-199.1,-289 -212.9,-302.7 -199.1,-316.4 -197.1,-314.4 -208.9,-302.7 -197.1,-291 -199.1,-289"/></g></g></svg></i>
+						<span class="prev-text nav-default">{{ .Title }}</span>
+						<span class="prev-text nav-mobile">{{ i18n "prevPost" }}</span>
+					</a>
+				{{- end }}
+				{{ with .PrevInSection }}
+					<a class="next" href="{{ .Permalink | safeURL }}">
+						<span class="next-text nav-default">{{ .Title }}</span>
+						<span class="prev-text nav-mobile">{{ i18n "nextPost" }}</span>
+						<i class="glyph right"><svg viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(237, 335)"><polyline points="-210.9,-289 -212.9,-291 -201.1,-302.7 -212.9,-314.4 -210.9,-316.4 -197.1,-302.7 -210.9,-289"/></g></g></svg></i>
+					</a>
+				{{- end }}
+			</nav>
+		</footer>
+	</article>
+{{- end }}

@@ -1,0 +1,12 @@
+<figure>
+	<div>
+		{{- if .Get "imagelink" -}}
+			<a data-title="{{ .Get "title" }}" href="{{ .Get "imagelink" }}">
+				<img loading="lazy" src="{{ .Get "imagetb" }}" alt="{{ .Get "title" }}" />
+			</a>
+		{{- else -}}
+			<img loading="lazy" src="{{ .Get "imagetb" }}" alt="{{ .Get "title" }}" />
+		{{- end -}}
+	</div>
+	<figcaption>{{ .Get "caption" }}</figcaption>
+</figure>

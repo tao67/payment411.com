@@ -1,0 +1,22 @@
+<a href="#" id="btt">
+	<i class="glyph up"><svg viewBox="0 0 64 64" fill="currentColor"><g><g transform="translate(237, 335)"><polyline points="-191.3,-296.9 -193.3,-294.9 -205,-306.6 -216.7,-294.9 -218.7,-296.9 -205,-310.6 -191.3,-296.9"/></g></g></svg></i>
+</a>
+<script src="/js/vendor.js"></script>
+{{ if eq .Site.Params.enable_webmentions true }}
+	{{ if or (eq .Section "post") (eq .Section "photo") (eq .Section "music") (eq .Section "review") }}
+		<script data-id="webmentions" data-page-url="{{ .Permalink | safeURL }}" type="text/javascript" src="/js/webmention.js"></script>
+	{{ end }}
+{{ end }}
+{{- if eq .Section "so.cl" }}
+<script src="/js/socl.js"></script>
+{{ end }}
+{{ range .Params.customjsfooter }}
+	<script src="{{ . }}"></script>
+{{ end }}
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+	_s_c_.backToTop();
+	_s_c_.mobileNavbar();
+	_s_c_.lightbox();
+});
+</script>

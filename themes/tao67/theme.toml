@@ -1,0 +1,16 @@
+name = "sizeofcat"
+license = "GPLv3"
+description = "The sizeof.cat website theme."
+homepage = "https://sizeof.cat"
+min_version = "0.90.0"
+tags = ["website", "responsive", "clean", "minimalist", "minimal", "personal", "speed"]
+
+[author]
+	name = "sizeof(cat)"
+	homepage = "https://sizeof.cat"
+
+[original]
+	author = "olOwOlo"
+	name = "hexo-theme-even"
+	homepage = "https://github.com/olOwOlo/hugo-theme-even/"
+	repo = "https://github.com/olOwOlo/hugo-theme-even"

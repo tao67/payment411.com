@@ -1,0 +1,31 @@
+{{ define "content" -}}
+<article class="post h-entry">
+	<header>
+		<h1 class="p-name">
+			<a class="u-url" href="{{ .Permalink | safeURL  }}">{{ .Title }}</a>
+		</h1>
+		<div class="meta">
+			<span> {{ .Params.date.Format .Site.Params.dateFormat }} &nbsp;</span>&nbsp;<span> {{ .Section | humanize }} </span>
+		</div>
+	</header>
+	<div class="content">
+		<div class="meta hidden">
+			<span class="dt-published post-time" datetime="{{ .Date.Format ("02 Jan 2006 15:04 MST") }}"> {{ .Date | time.Format ":date_full" }} </span>
+		</div>
+		<div class="cover">
+			{{- if .Params.bigImage -}}
+			<a href="{{ .Params.bigImage }}">
+				<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+			</a>
+			{{- else -}}
+				<img loading="lazy" src="{{ .Params.image }}" alt="{{ .Title }}" />
+			{{- end -}}
+		</div>
+	</div>
+	{{ partial "post/copyright.html" . }}
+	{{ partial "post/translations.html" . }}
+	{{ partial "post/webmention.html" . }}
+	{{ partial "post/syndication.html" . }}
+	{{ partial "post/related.html" . }}
+</article>
+{{- end }}
